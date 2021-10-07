@@ -1,0 +1,28 @@
+﻿@using TwitchCommunity.Application.Enlistments
+@model IEnumerable<Enlistment>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+
+    <ul>
+        @foreach (var enlistment in Model)
+        {
+            <li>
+                <strong>@enlistment.UserName</strong>
+                <small>@enlistment.Timestamp</small>
+            </li>
+
+        }
+
+        @if(!Model.Any())
+        {
+            <li>Keine Einträge</li>
+        }
+    </ul>
+
+</div>
