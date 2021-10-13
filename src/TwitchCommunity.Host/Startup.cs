@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using TwitchCommunity.Application;
+using TwitchCommunity.Connector;
 using TwitchCommunity.Persistence;
 
 namespace TwitchCommunity.Host
@@ -20,7 +22,10 @@ namespace TwitchCommunity.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddLogging();
+
             services.AddTwitchCommunityApplication(Configuration);
+            services.AddTwitchCommunityConnector(Configuration);
             services.AddTwitchCommunityPersistence(Configuration);
 
             services.AddControllersWithViews();
@@ -29,7 +34,15 @@ namespace TwitchCommunity.Host
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<TwitchCommunityDbContext>().Database.EnsureCreated();
+            app.ApplicationServices.CreateScope()
+                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>().Database.EnsureCreated();
+
+            var connector = app.ApplicationServices.GetRequiredService<TwitchConnector>();
+            connector.Connect();
+
+            var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
+            logger.LogInformation("Starting");
+
 
             if (env.IsDevelopment())
             {
