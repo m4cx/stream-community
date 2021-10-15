@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using TwitchCommunity.Application;
 using TwitchCommunity.Connector.Configuration;
+using TwitchCommunity.Persistence;
 
 namespace TwitchCommunity.Connector
 {
@@ -15,7 +16,11 @@ namespace TwitchCommunity.Connector
         {
             var configurationSection = configuration.GetSection(ConfigurationSectionName);
             services.Configure<TwitchConnectorConfiguration>(configurationSection);
-            services.AddSingleton<TwitchConnector>();
+            services.AddScoped<TwitchConnector>();
+            services.AddHostedService<TwitchConnectorHostedService>();
+
+            services.AddTwitchCommunityApplication(configuration);
+            services.AddTwitchCommunityPersistence(configuration);
 
             return services;
         }

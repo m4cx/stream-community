@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using TwitchCommunity.Application.Common;
@@ -11,7 +10,9 @@ namespace TwitchCommunity.Application.Enlistments.Handler
         private readonly IEnlistmentRepository enlistmentRepository;
         private readonly IDateTimeProvider dateTimeProvider;
 
-        public EnlistPlayerCommandHandler(IEnlistmentRepository enlistmentRepository, IDateTimeProvider dateTimeProvider)
+        public EnlistPlayerCommandHandler(
+            IEnlistmentRepository enlistmentRepository, 
+            IDateTimeProvider dateTimeProvider)
         {
             this.enlistmentRepository = enlistmentRepository;
             this.dateTimeProvider = dateTimeProvider;

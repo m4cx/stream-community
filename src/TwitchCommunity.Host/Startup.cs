@@ -24,9 +24,8 @@ namespace TwitchCommunity.Host
         {
             services.AddLogging();
 
-            services.AddTwitchCommunityApplication(Configuration);
-            services.AddTwitchCommunityConnector(Configuration);
             services.AddTwitchCommunityPersistence(Configuration);
+            services.AddTwitchCommunityConnector(Configuration);
 
             services.AddControllersWithViews();
         }
@@ -35,10 +34,9 @@ namespace TwitchCommunity.Host
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.ApplicationServices.CreateScope()
-                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>().Database.EnsureCreated();
-
-            var connector = app.ApplicationServices.GetRequiredService<TwitchConnector>();
-            connector.Connect();
+                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
+                .Database
+                .EnsureCreated();
 
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             logger.LogInformation("Starting");

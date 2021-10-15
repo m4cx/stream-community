@@ -34,7 +34,7 @@ namespace TwitchCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<IEnlistmentRepository, EnlistmentRepository>();
+            services.AddTransient<IEnlistmentRepository, EnlistmentRepository>();
 
             return services;
         } 

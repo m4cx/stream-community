@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MediatR;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using System.Threading.Tasks;
+using TwitchCommunity.Application.Enlistments;
 using TwitchCommunity.Connector.Configuration;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
@@ -12,12 +15,15 @@ namespace TwitchCommunity.Connector
     public sealed class TwitchConnector
     {
         private readonly TwitchClient twitchClient;
+        private readonly IMediator mediator;
         private readonly ILogger<TwitchConnector> logger;
 
         public TwitchConnector(
-            IOptions<TwitchConnectorConfiguration> connectorConfiguration, 
+            IOptions<TwitchConnectorConfiguration> connectorConfiguration,
+            IMediator mediator,
             ILogger<TwitchConnector> logger)
         {
+            this.mediator = mediator;
             this.logger = logger;
 
             var credentials = new ConnectionCredentials(
@@ -35,18 +41,23 @@ namespace TwitchCommunity.Connector
 
         public void Connect() => twitchClient.Connect();
 
+        public void Disconnect() => twitchClient.Disconnect();
+
         private void InitializeEvents()
         {
             twitchClient.OnConnected += TwitchClient_OnConnected;
-            twitchClient.OnMessageReceived += TwitchClient_OnMessageReceived;
+            twitchClient.OnMessageReceived += async (sender, e) => await OnMessageReceived(sender, e);
         }
 
-        private void TwitchClient_OnMessageReceived(object sender, OnMessageReceivedArgs e)
+        private async Task OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
-            logger.LogInformation("Message Received: {e}", e.ChatMessage.Message);
-            if (e.ChatMessage.Message.StartsWith("!m4cx"))
-                twitchClient.SendMessage(e.ChatMessage.Channel, "Ich bin immer da und sehe alles!");
+            const string EnlistmentKey = "!enlist";
 
+            if (e.ChatMessage.Message.StartsWith(EnlistmentKey))
+            {
+                var command = new EnlistPlayerCommand(e.ChatMessage.Username);
+                await mediator.Send(command);
+            }
         }
 
         private void TwitchClient_OnConnected(object sender, OnConnectedArgs e)
