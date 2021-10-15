@@ -1,25 +1,23 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
+using TwitchCommunity.Application.Persistence;
 
 namespace TwitchCommunity.Application.Enlistments.Handler
 {
     internal sealed class GetEnlistmentsRequestHandler : IRequestHandler<GetEnlistmentsRequest, GetEnlistmentsResponse>
     {
-        private readonly IEnlistmentRepository enlistmentRepository;
+        private readonly ITwitchCommunityContext communityContext;
 
-        public GetEnlistmentsRequestHandler(IEnlistmentRepository enlistmentRepository)
+        public GetEnlistmentsRequestHandler(ITwitchCommunityContext enlistmentRepository)
         {
-            this.enlistmentRepository = enlistmentRepository;
+            this.communityContext = enlistmentRepository;
         }
 
         public async Task<GetEnlistmentsResponse> Handle(GetEnlistmentsRequest request, CancellationToken cancellationToken = default)
         {
-            var enlistments = await enlistmentRepository.GetAllAsync(cancellationToken);
+            var enlistments = await communityContext.Enlistments.ToArrayAsync(cancellationToken);
 
             return new GetEnlistmentsResponse(enlistments);
         }

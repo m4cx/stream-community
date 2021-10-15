@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using TwitchCommunity.Application.Enlistments;
+using TwitchCommunity.Application.Persistence;
 using TwitchCommunity.Persistence.Configuration;
 
 namespace TwitchCommunity.Persistence
@@ -34,7 +35,7 @@ namespace TwitchCommunity.Persistence
 #endif
             });
 
-            services.AddTransient<IEnlistmentRepository, EnlistmentRepository>();
+            services.AddScoped<ITwitchCommunityContext>(options => options.GetRequiredService<TwitchCommunityDbContext>());
 
             return services;
         } 
