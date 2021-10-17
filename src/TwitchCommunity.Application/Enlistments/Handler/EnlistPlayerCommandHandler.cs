@@ -26,10 +26,12 @@ namespace TwitchCommunity.Application.Enlistments.Handler
 
         public async Task<Unit> Handle(EnlistPlayerCommand request, CancellationToken cancellationToken)
         {
-            // check if an active enlistment exists
-            if (twitchCommunityContext.Enlistments.Any(x => x.UserName == request.UserName))
+            // check if an open or active enlistment exists
+            if (twitchCommunityContext.Enlistments.Any(
+                x => x.UserName == request.UserName 
+                && (x.State == EnlistmentState.Active || x.State == EnlistmentState.Open)))
             {
-                logger.LogInformation("User {userName} has already an active enlistment", request.UserName);
+                logger.LogInformation("User {userName} has already an open or active enlistment", request.UserName);
                 return Unit.Value;
             }
 

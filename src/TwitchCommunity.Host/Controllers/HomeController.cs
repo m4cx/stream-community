@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using TwitchCommunity.Application.Enlistments;
 using TwitchCommunity.Host.Models;
+using TwitchCommunity.Host.ViewModels;
 
 namespace TwitchCommunity.Host.Controllers
 {
@@ -23,12 +25,15 @@ namespace TwitchCommunity.Host.Controllers
         {
             var response = await mediator.Send(new GetEnlistmentsRequest());
 
-            return View(response.Enlistments);
+            return View(response.Enlistments.Select(x => new EnlistmentViewModel(x)));
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public async Task<IActionResult> PostAsync(DrawApiParameters drawApiParameters)
         {
-            return View();
+            await mediator.Send(new DrawEnlistmentsCommand(drawApiParameters.Selected));
+
+            return await IndexAsync();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

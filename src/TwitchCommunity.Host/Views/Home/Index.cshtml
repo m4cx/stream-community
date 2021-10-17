@@ -1,28 +1,39 @@
 ﻿@using TwitchCommunity.Application.Enlistments
-@model IEnumerable<Enlistment>
+@using TwitchCommunity.Host.ViewModels
+@model IEnumerable<EnlistmentViewModel>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    @using (Html.BeginForm("Post", "Home", FormMethod.Post))
+    {
 
-    <ul>
-        @foreach (var enlistment in Model)
-        {
-            <li>
-                <strong>@enlistment.UserName</strong>
-                <small>@enlistment.Timestamp</small>
-            </li>
+        <ul class="list-group">
+            @foreach (var enlistment in Model)
+            {
+                <li class="list-group-item">
+                    <div>
+                        @if(enlistment.State == EnlistmentState.Open)
+                        {
+                            <input type="checkbox" name="selected" value="@enlistment.Id" />
+                        }
+                        
+                        <strong>@enlistment.UserName</strong>
+                        <small>@enlistment.Timestamp</small>
+                        
+                    </div>
+                </li>
 
-        }
+            }
 
-        @if(!Model.Any())
-        {
-            <li>Keine Einträge</li>
-        }
-    </ul>
+            @if (!Model.Any())
+            {
+                <li>Keine Einträge</li>
+            }
+        </ul>
 
+        <input type="submit" value="Draw" />
+    }
 </div>

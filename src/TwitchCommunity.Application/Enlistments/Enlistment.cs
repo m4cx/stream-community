@@ -8,6 +8,7 @@ namespace TwitchCommunity.Application.Enlistments
 
         public Enlistment(string userName, DateTime timestamp)
         {
+            State = EnlistmentState.Open;
             UserName = userName;
             Timestamp = timestamp;
         }
@@ -17,5 +18,7 @@ namespace TwitchCommunity.Application.Enlistments
         public string UserName { get; }
 
         public DateTime Timestamp { get; }
+
+        public EnlistmentState State { get; set; }
     }
 }
