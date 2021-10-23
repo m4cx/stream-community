@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Application.Enlistments
 {

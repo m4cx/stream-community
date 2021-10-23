@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using TwitchCommunity.Application.Enlistments;
 using TwitchCommunity.Application.Persistence;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Persistence
 {

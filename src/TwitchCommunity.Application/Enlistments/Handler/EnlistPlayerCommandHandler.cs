@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using TwitchCommunity.Application.Common;
 using TwitchCommunity.Application.Persistence;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Application.Enlistments.Handler
 {

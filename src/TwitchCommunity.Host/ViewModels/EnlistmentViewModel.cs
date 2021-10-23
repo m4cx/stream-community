@@ -1,5 +1,5 @@
 ﻿using System;
-using TwitchCommunity.Application.Enlistments;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Host.ViewModels
 {

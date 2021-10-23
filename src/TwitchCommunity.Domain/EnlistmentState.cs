@@ -1,4 +1,4 @@
-﻿namespace TwitchCommunity.Application.Enlistments
+﻿namespace TwitchCommunity.Domain
 {
     public enum EnlistmentState
     {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Threading;
 using System.Threading.Tasks;
-using TwitchCommunity.Application.Enlistments;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Application.Persistence
 {

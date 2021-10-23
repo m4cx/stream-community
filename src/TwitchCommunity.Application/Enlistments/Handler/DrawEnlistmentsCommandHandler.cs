@@ -18,10 +18,11 @@ namespace TwitchCommunity.Application.Enlistments.Handler
 
         public async Task<Unit> Handle(DrawEnlistmentsCommand request, CancellationToken cancellationToken)
         {
-            var selectedEnlistments = communityContext.Enlistments.Where(x => request.SelectedEnlistmentIds.Contains(x.Id));
+            var selectedEnlistments = communityContext.Enlistments
+                .Where(x => request.SelectedEnlistmentIds.Contains(x.Id));
             foreach (var enlistment in selectedEnlistments)
             {
-                enlistment.State = EnlistmentState.Active;
+                enlistment.Draw();
             }
 
             await communityContext.SaveChangesAsync(cancellationToken);

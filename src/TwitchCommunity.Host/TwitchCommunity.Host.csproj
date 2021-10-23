@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TwitchCommunity.Connector\TwitchCommunity.Connector.csproj" />
+    <ProjectReference Include="..\TwitchCommunity.Domain\TwitchCommunity.Domain.csproj" />
     <ProjectReference Include="..\TwitchCommunity.Persistence\TwitchCommunity.Persistence.csproj" />
   </ItemGroup>
 

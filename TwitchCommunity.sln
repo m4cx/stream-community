@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitchCommunity.Application
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitchCommunity.Persistence", "src\TwitchCommunity.Persistence\TwitchCommunity.Persistence.csproj", "{6F08AB23-4C6A-4004-8CE4-FDEDDD0648CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchCommunity.Connector", "src\TwitchCommunity.Connector\TwitchCommunity.Connector.csproj", "{DED37B27-290A-4F72-94C8-96DE226AAF57}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TwitchCommunity.Connector", "src\TwitchCommunity.Connector\TwitchCommunity.Connector.csproj", "{DED37B27-290A-4F72-94C8-96DE226AAF57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchCommunity.Domain", "src\TwitchCommunity.Domain\TwitchCommunity.Domain.csproj", "{34CA685A-8D43-4923-8374-C00C45428742}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{DED37B27-290A-4F72-94C8-96DE226AAF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DED37B27-290A-4F72-94C8-96DE226AAF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DED37B27-290A-4F72-94C8-96DE226AAF57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34CA685A-8D43-4923-8374-C00C45428742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34CA685A-8D43-4923-8374-C00C45428742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34CA685A-8D43-4923-8374-C00C45428742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34CA685A-8D43-4923-8374-C00C45428742}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -31,9 +31,18 @@ namespace TwitchCommunity.Host.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync(DrawApiParameters drawApiParameters)
         {
-            await mediator.Send(new DrawEnlistmentsCommand(drawApiParameters.Selected));
+            if (drawApiParameters.Selected != null)
+            {
+                await mediator.Send(new DrawEnlistmentsCommand(drawApiParameters.Selected));
+            }
 
-            return await IndexAsync();
+            if (drawApiParameters.ActiveSelected != null)
+            {
+                await mediator.Send(new CloseEnlistementsCommand(drawApiParameters.ActiveSelected));
+            }
+
+            var response = await mediator.Send(new GetEnlistmentsRequest());
+            return View(response.Enlistments.Select(x => new EnlistmentViewModel(x)));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

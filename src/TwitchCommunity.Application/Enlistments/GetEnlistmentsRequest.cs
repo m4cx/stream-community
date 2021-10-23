@@ -1,13 +1,15 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using TwitchCommunity.Domain;
 
 namespace TwitchCommunity.Application.Enlistments
 {
     public sealed class GetEnlistmentsRequest : IRequest<GetEnlistmentsResponse>
     {
+        public GetEnlistmentsRequest(EnlistmentState? state = null)
+        {
+            State = state;
+        }
+
+        public EnlistmentState? State { get; }
     }
 }
