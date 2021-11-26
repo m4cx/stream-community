@@ -5,10 +5,6 @@ namespace TwitchCommunity.Domain
 {
     public class Enlistment
     {
-        private Enlistment()
-        {
-        }
-
         /// <summary>
         /// Creates a new <see cref="Enlistment"/> instance
         /// </summary>

@@ -1,7 +1,8 @@
+import { EnlistmentsQuery } from './../../state/enlistments.query';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Enlistment } from '../../models/enlistment';
-import { EnlistmentsService } from '../../services/enlistments.service';
+import { EnlistmentsService } from '../../state/enlistments.service';
+import { Enlistment } from '../../state/enlistment.model';
 
 @Component({
   selector: 'app-enlistments-page',
@@ -11,23 +12,21 @@ import { EnlistmentsService } from '../../services/enlistments.service';
 export class EnlistmentsPageComponent implements OnInit {
   public enlistments$: Observable<Enlistment[]>;
 
-  constructor(private enlistmentsService: EnlistmentsService) {}
+  constructor(
+    private enlistmentService: EnlistmentsService,
+    private enlistmentQuery: EnlistmentsQuery
+  ) {}
 
   ngOnInit() {
-    this.loadData();
+    this.enlistments$ = this.enlistmentQuery.selectAll();
+    this.enlistmentService.getEnlistments().toPromise();
   }
 
   async draw(enlistment: Enlistment) {
-    this.enlistmentsService.draw(enlistment);
-    this.loadData();
+    this.enlistmentService.draw(enlistment).toPromise();
   }
 
   async close(enlistment: Enlistment) {
-    this.enlistmentsService.close(enlistment);
-    this.loadData();
-  }
-
-  private loadData() {
-    this.enlistments$ = this.enlistmentsService.getEnlistments();
+    this.enlistmentService.close(enlistment).toPromise();
   }
 }
