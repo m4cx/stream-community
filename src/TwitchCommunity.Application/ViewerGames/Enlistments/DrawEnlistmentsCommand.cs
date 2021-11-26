@@ -1,7 +1,7 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MediatR;
 
-namespace TwitchCommunity.Application.Enlistments
+namespace TwitchCommunity.Application.ViewerGames.Enlistments
 {
     public sealed class DrawEnlistmentsCommand : IRequest
     {

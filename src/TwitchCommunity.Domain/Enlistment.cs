@@ -1,10 +1,13 @@
 ﻿using System;
+using TwitchCommunity.Domain.Exceptions;
 
 namespace TwitchCommunity.Domain
 {
     public class Enlistment
     {
-        private Enlistment() { }
+        private Enlistment()
+        {
+        }
 
         /// <summary>
         /// Creates a new <see cref="Enlistment"/> instance
@@ -40,6 +43,12 @@ namespace TwitchCommunity.Domain
         /// </summary>
         public void Draw()
         {
+            if (State != EnlistmentState.Open)
+            {
+                throw new EnlistmentException(
+                    $"Enlistment needs to be in state 'Active' in order to be closed. Current State: {Enum.GetName(State)}");
+            }
+
             State = EnlistmentState.Active;
         }
 
@@ -48,6 +57,12 @@ namespace TwitchCommunity.Domain
         /// </summary>
         public void Close()
         {
+            if (State != EnlistmentState.Active)
+            {
+                throw new EnlistmentException(
+                    $"Enlistment needs to be in state 'Active' in order to be closed. Current State: {Enum.GetName(State)}");
+            }
+
             State = EnlistmentState.Closed;
         }
     }

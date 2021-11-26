@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using TwitchCommunity.Application.Persistence;
+using TwitchCommunity.Application.ViewerGames.Enlistments;
 
 namespace TwitchCommunity.Application.Enlistments.Handler
 {

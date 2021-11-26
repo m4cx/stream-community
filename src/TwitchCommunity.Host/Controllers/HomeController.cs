@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TwitchCommunity.Application.Enlistments;
+using TwitchCommunity.Application.ViewerGames.Enlistments;
 using TwitchCommunity.Host.Models;
 using TwitchCommunity.Host.ViewModels;
 
@@ -38,7 +39,7 @@ namespace TwitchCommunity.Host.Controllers
 
             if (drawApiParameters.ActiveSelected != null)
             {
-                await mediator.Send(new CloseEnlistementsCommand(drawApiParameters.ActiveSelected));
+                await mediator.Send(new CloseEnlistmentsCommand(drawApiParameters.ActiveSelected));
             }
 
             var response = await mediator.Send(new GetEnlistmentsRequest());

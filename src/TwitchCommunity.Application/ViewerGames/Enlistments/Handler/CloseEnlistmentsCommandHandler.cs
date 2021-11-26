@@ -8,7 +8,7 @@ using TwitchCommunity.Application.Persistence;
 
 namespace TwitchCommunity.Application.Enlistments.Handler
 {
-    internal sealed class CloseEnlistmentsCommandHandler : IRequestHandler<CloseEnlistementsCommand, CloseEnlistmentsCommandResponse>
+    internal sealed class CloseEnlistmentsCommandHandler : IRequestHandler<CloseEnlistmentsCommand, CloseEnlistmentsCommandResponse>
     {
         private readonly ITwitchCommunityContext communityContext;
 
@@ -18,7 +18,7 @@ namespace TwitchCommunity.Application.Enlistments.Handler
         }
 
         public async Task<CloseEnlistmentsCommandResponse> Handle(
-            CloseEnlistementsCommand request, 
+            CloseEnlistmentsCommand request, 
             CancellationToken cancellationToken)
         {
             var enlistmentsToClose = await communityContext.Enlistments

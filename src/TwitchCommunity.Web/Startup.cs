@@ -1,14 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StreamCommunity.Api.ViewerGames;
 using TwitchCommunity.Connector;
 using TwitchCommunity.Persistence;
-using TwitchCommunity.Web;
 
-namespace TwitchCommunity.Host
+namespace TwitchCommunity.Web
 {
     public class Startup
     {
@@ -22,52 +22,25 @@ namespace TwitchCommunity.Host
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddLogging();
-
             services.AddWebApplication();
+            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(EnlistmentsController).Assembly));
 
             services.AddTwitchCommunityPersistence(Configuration);
             services.AddTwitchCommunityConnector(Configuration);
-
-            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.ApplicationServices.CreateScope()
-                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
-                .Database
-                .EnsureCreated();
+               .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
+               .Database
+               .EnsureCreated();
 
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             logger.LogInformation("Starting");
 
             app.AddWebApplication(env);
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-            });
         }
     }
 }

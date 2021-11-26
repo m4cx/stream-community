@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace TwitchCommunity.Application.Enlistments
 {
-    public sealed class CloseEnlistementsCommand : IRequest<CloseEnlistmentsCommandResponse>
+    public sealed class CloseEnlistmentsCommand : IRequest<CloseEnlistmentsCommandResponse>
     {
-        public CloseEnlistementsCommand(IEnumerable<int> enlistmentIds)
+        public CloseEnlistmentsCommand(IEnumerable<int> enlistmentIds)
         {
             EnlistmentIds = enlistmentIds;
         }
