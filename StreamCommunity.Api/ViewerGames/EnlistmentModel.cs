@@ -1,5 +1,4 @@
 ﻿using System;
-using TwitchCommunity.Domain;
 
 namespace StreamCommunity.Api.ViewerGames
 {

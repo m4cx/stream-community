@@ -13,8 +13,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\src\TwitchCommunity.Application\TwitchCommunity.Application.csproj" />
-		<ProjectReference Include="..\src\TwitchCommunity.Domain\TwitchCommunity.Domain.csproj" />
+		<ProjectReference Include="..\src\StreamCommunity.Application\StreamCommunity.Application.csproj" />
+		<ProjectReference Include="..\src\StreamCommunity.Domain\StreamCommunity.Domain.csproj" />
 	</ItemGroup>
 
 </Project>
