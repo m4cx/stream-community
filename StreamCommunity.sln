@@ -11,13 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamCommunity.Twitch", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamCommunity.Domain", "src\StreamCommunity.Domain\StreamCommunity.Domain.csproj", "{34CA685A-8D43-4923-8374-C00C45428742}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamCommunity.Api", "StreamCommunity.Api\StreamCommunity.Api.csproj", "{E96941B8-A775-46C7-A14F-AC21F0358286}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{0D5B28A5-E4F1-4CC3-90D5-EE3C5219D90D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{49145D4D-08D4-4F76-9D3E-F63B9ECEC63A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StreamCommunity.Host", "src\StreamCommunity.Host\StreamCommunity.Host.csproj", "{9EA4CB23-B0E5-4E2E-96CF-7AA4EFD8C24A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{6F9C60C1-00F1-4B98-89DE-514DADF65A6C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamCommunity.Api", "src\StreamCommunity.Api\StreamCommunity.Api.csproj", "{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,14 +43,14 @@ Global
 		{34CA685A-8D43-4923-8374-C00C45428742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34CA685A-8D43-4923-8374-C00C45428742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34CA685A-8D43-4923-8374-C00C45428742}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E96941B8-A775-46C7-A14F-AC21F0358286}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E96941B8-A775-46C7-A14F-AC21F0358286}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E96941B8-A775-46C7-A14F-AC21F0358286}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E96941B8-A775-46C7-A14F-AC21F0358286}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9EA4CB23-B0E5-4E2E-96CF-7AA4EFD8C24A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9EA4CB23-B0E5-4E2E-96CF-7AA4EFD8C24A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EA4CB23-B0E5-4E2E-96CF-7AA4EFD8C24A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EA4CB23-B0E5-4E2E-96CF-7AA4EFD8C24A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,7 +58,9 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6F08AB23-4C6A-4004-8CE4-FDEDDD0648CD} = {0D5B28A5-E4F1-4CC3-90D5-EE3C5219D90D}
 		{DED37B27-290A-4F72-94C8-96DE226AAF57} = {0D5B28A5-E4F1-4CC3-90D5-EE3C5219D90D}
-		{E96941B8-A775-46C7-A14F-AC21F0358286} = {49145D4D-08D4-4F76-9D3E-F63B9ECEC63A}
+		{8378A3AF-1F31-4AF7-9F2D-A6EFF49432D2} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
+		{34CA685A-8D43-4923-8374-C00C45428742} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
+		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3} = {49145D4D-08D4-4F76-9D3E-F63B9ECEC63A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {949E90CC-6FB4-4C93-8BBB-845D2B37DA5F}

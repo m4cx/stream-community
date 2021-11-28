@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<LangVersion>10</LangVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="9.0.0" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+		  <PrivateAssets>all</PrivateAssets>
+		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\StreamCommunity.Application\StreamCommunity.Application.csproj" />
+		<ProjectReference Include="..\StreamCommunity.Domain\StreamCommunity.Domain.csproj" />
+	</ItemGroup>
+
+</Project>
