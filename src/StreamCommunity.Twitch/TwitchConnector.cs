@@ -1,9 +1,9 @@
-﻿using MediatR;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using System.Threading.Tasks;
-using StreamCommunity.Twitch.Configuration;
 using StreamCommunity.Application.Enlistments;
+using StreamCommunity.Twitch.Configuration;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
 using TwitchLib.Client.Models;
@@ -27,7 +27,7 @@ namespace StreamCommunity.Twitch
             this.logger = logger;
 
             var credentials = new ConnectionCredentials(
-                connectorConfiguration.Value.UserName, 
+                connectorConfiguration.Value.UserName,
                 connectorConfiguration.Value.AccessToken);
 
             var clientOptions = new ClientOptions();

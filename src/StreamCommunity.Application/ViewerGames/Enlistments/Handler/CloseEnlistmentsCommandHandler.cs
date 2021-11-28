@@ -1,14 +1,17 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
 
-namespace StreamCommunity.Application.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
 {
-    internal sealed class CloseEnlistmentsCommandHandler : IRequestHandler<CloseEnlistmentsCommand, CloseEnlistmentsCommandResponse>
+    [UsedImplicitly]
+    internal sealed class
+        CloseEnlistmentsCommandHandler : IRequestHandler<CloseEnlistmentsCommand, CloseEnlistmentsCommandResponse>
     {
         private readonly ITwitchCommunityContext communityContext;
 
@@ -18,14 +21,14 @@ namespace StreamCommunity.Application.Enlistments.Handler
         }
 
         public async Task<CloseEnlistmentsCommandResponse> Handle(
-            CloseEnlistmentsCommand request, 
+            CloseEnlistmentsCommand request,
             CancellationToken cancellationToken)
         {
             var enlistmentsToClose = await communityContext.Enlistments
                 .Where(x => request.EnlistmentIds.Contains(x.Id))
                 .ToListAsync();
 
-            foreach(var enlistment in enlistmentsToClose)
+            foreach (var enlistment in enlistmentsToClose)
             {
                 enlistment.Close();
             }

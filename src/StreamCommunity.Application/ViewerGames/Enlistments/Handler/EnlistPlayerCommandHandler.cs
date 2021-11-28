@@ -1,13 +1,14 @@
-﻿using MediatR;
-using Microsoft.Extensions.Logging;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.Extensions.Logging;
 using StreamCommunity.Application.Common;
+using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
 {
     internal sealed class EnlistPlayerCommandHandler : IRequestHandler<EnlistPlayerCommand>
     {
@@ -29,8 +30,8 @@ namespace StreamCommunity.Application.Enlistments.Handler
         {
             // check if an open or active enlistment exists
             if (twitchCommunityContext.Enlistments.Any(
-                x => x.UserName == request.UserName 
-                && (x.State == EnlistmentState.Active || x.State == EnlistmentState.Open)))
+                x => x.UserName == request.UserName
+                     && (x.State == EnlistmentState.Active || x.State == EnlistmentState.Open)))
             {
                 logger.LogInformation("User {userName} has already an open or active enlistment", request.UserName);
                 return Unit.Value;

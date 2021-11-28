@@ -1,14 +1,16 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
 {
+    [UsedImplicitly]
     internal sealed class GetEnlistmentsRequestHandler : IRequestHandler<GetEnlistmentsRequest, GetEnlistmentsResponse>
     {
         private readonly ITwitchCommunityContext communityContext;
@@ -19,7 +21,7 @@ namespace StreamCommunity.Application.Enlistments.Handler
         }
 
         public async Task<GetEnlistmentsResponse> Handle(
-            GetEnlistmentsRequest request, 
+            GetEnlistmentsRequest request,
             CancellationToken cancellationToken = default)
         {
             IQueryable<Enlistment> query = communityContext.Enlistments;

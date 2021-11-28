@@ -1,13 +1,13 @@
-﻿using MediatR;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
+using MediatR;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments;
 
-namespace StreamCommunity.Application.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
 {
+    [UsedImplicitly]
     internal sealed class DrawEnlistmentsCommandHandler : IRequestHandler<DrawEnlistmentsCommand>
     {
         private readonly ITwitchCommunityContext communityContext;

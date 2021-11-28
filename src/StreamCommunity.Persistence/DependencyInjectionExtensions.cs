@@ -1,16 +1,17 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using StreamCommunity.Persistence.Configuration;
-using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
+using StreamCommunity.Persistence.Configuration;
 
 namespace StreamCommunity.Persistence
 {
     public static class DependencyInjectionExtensions
     {
-        public static IServiceCollection AddTwitchCommunityPersistence(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddTwitchCommunityPersistence(
+            this IServiceCollection services,
+            IConfiguration configuration)
         {
             services.AddOptions();
 
@@ -35,9 +36,10 @@ namespace StreamCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<ITwitchCommunityContext>(options => options.GetRequiredService<TwitchCommunityDbContext>());
+            services.AddScoped<ITwitchCommunityContext>(options =>
+                options.GetRequiredService<TwitchCommunityDbContext>());
 
             return services;
-        } 
+        }
     }
 }

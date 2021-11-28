@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.ViewerGames.Enlistments;
 
@@ -17,7 +17,7 @@ namespace StreamCommunity.Api.ViewerGames
 
         public EnlistmentsController(IMediator mediator)
         {
-            this.mediator = mediator; 
+            this.mediator = mediator;
         }
 
         [HttpGet]
@@ -41,7 +41,7 @@ namespace StreamCommunity.Api.ViewerGames
             await mediator.Send(new DrawEnlistmentsCommand(new[] { enlistmentId }));
             return Ok();
         }
-        
+
         [HttpPut("{enlistmentId}/close")]
         public async Task<IActionResult> CloseEnlistmentAsync(int enlistmentId)
         {

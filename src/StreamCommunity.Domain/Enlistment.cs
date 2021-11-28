@@ -6,10 +6,10 @@ namespace StreamCommunity.Domain
     public class Enlistment
     {
         /// <summary>
-        /// Creates a new <see cref="Enlistment"/> instance
+        /// Initializes a new instance of the <see cref="Enlistment"/> class.
         /// </summary>
-        /// <param name="userName"></param>
-        /// <param name="timestamp"></param>
+        /// <param name="userName">name of the user.</param>
+        /// <param name="timestamp">creation timestamp.</param>
         public Enlistment(string userName, DateTime timestamp)
         {
             State = EnlistmentState.Open;
@@ -17,25 +17,28 @@ namespace StreamCommunity.Domain
             Timestamp = timestamp;
         }
 
+        /// <summary>
+        /// Gets the unique identifier of the <see cref="Enlistment"/> instance.
+        /// </summary>
         public int Id { get; private set; }
 
         /// <summary>
-        /// Gets the username
+        /// Gets the username.
         /// </summary>
         public string UserName { get; }
 
         /// <summary>
-        /// Gets the timestamp the enlistment was created
+        /// Gets the timestamp the enlistment was created.
         /// </summary>
         public DateTime Timestamp { get; }
 
         /// <summary>
-        /// Gets the state of the enlistment
+        /// Gets the state of the enlistment.
         /// </summary>
         public EnlistmentState State { get; private set; }
 
         /// <summary>
-        /// Draw a player to be active  
+        /// Draw a player to be active.
         /// </summary>
         public void Draw()
         {
@@ -49,7 +52,7 @@ namespace StreamCommunity.Domain
         }
 
         /// <summary>
-        /// Close the enlistment session
+        /// Close the enlistment session.
         /// </summary>
         public void Close()
         {

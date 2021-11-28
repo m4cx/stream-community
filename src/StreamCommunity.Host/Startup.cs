@@ -5,10 +5,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StreamCommunity.Api.ViewerGames;
-using StreamCommunity.Twitch;
 using StreamCommunity.Persistence;
+using StreamCommunity.Twitch;
+using TwitchCommunity.Web;
 
-namespace TwitchCommunity.Web
+namespace StreamCommunity.Host
 {
     public class Startup
     {

@@ -1,14 +1,14 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace StreamCommunity.Twitch
 {
     internal sealed class TwitchConnectorHostedService : BackgroundService, IHostedService
     {
-        private TwitchConnector connector;
         private readonly IServiceScopeFactory serviceScopeFactory;
+        private TwitchConnector connector;
 
         public TwitchConnectorHostedService(IServiceScopeFactory serviceScopeFactory)
         {
@@ -22,7 +22,7 @@ namespace StreamCommunity.Twitch
 
             connector.Connect();
 
-            while(!stoppingToken.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
                 await Task.Delay(500);
             }

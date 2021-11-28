@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StreamCommunity.Twitch.Configuration;
 using StreamCommunity.Application;
 using StreamCommunity.Persistence;
+using StreamCommunity.Twitch.Configuration;
 
 namespace StreamCommunity.Twitch
 {

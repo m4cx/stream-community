@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using StreamCommunity.Domain;
 using StreamCommunity.Application.Persistence;
+using StreamCommunity.Domain;
 
 namespace StreamCommunity.Persistence
 {
     public sealed class TwitchCommunityDbContext : DbContext, ITwitchCommunityContext
     {
-        public TwitchCommunityDbContext(DbContextOptions<TwitchCommunityDbContext> dbContextOptions) 
+        public TwitchCommunityDbContext(DbContextOptions<TwitchCommunityDbContext> dbContextOptions)
             : base(dbContextOptions)
         {
         }

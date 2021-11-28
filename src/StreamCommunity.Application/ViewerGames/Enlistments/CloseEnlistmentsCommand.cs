@@ -1,7 +1,8 @@
-﻿using MediatR;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using MediatR;
+using StreamCommunity.Application.Enlistments;
 
-namespace StreamCommunity.Application.Enlistments
+namespace StreamCommunity.Application.ViewerGames.Enlistments
 {
     public sealed class CloseEnlistmentsCommand : IRequest<CloseEnlistmentsCommandResponse>
     {
