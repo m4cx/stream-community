@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 .idea
 src/StreamCommunity.Host/twitch-community.sqlite
+src/StreamCommunity.Host/twitch-community.sqlite-wal
+src/StreamCommunity.Host/twitch-community.sqlite-shm

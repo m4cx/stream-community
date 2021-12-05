@@ -22,6 +22,7 @@
     "@angular/router": "12.2.12",
     "@datorama/akita": "^6.2.4",
     "@datorama/akita-ng-entity-service": "^6.2.0",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "bootstrap": "^4.6.1",
     "core-js": "^3.19.0",
     "jquery": "^3.6.0",

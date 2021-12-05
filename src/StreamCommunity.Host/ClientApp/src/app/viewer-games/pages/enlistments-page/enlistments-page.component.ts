@@ -29,4 +29,8 @@ export class EnlistmentsPageComponent implements OnInit {
   async close(enlistment: Enlistment) {
     this.enlistmentService.close(enlistment).toPromise();
   }
+
+  async reload() {
+    await this.enlistmentService.getEnlistments().toPromise();
+  }
 }

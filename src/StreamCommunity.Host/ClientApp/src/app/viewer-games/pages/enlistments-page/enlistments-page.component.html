@@ -1,3 +1,9 @@
+<div class="actions">
+  <button class="btn btn-sm btn-secondary" (click)="reload()">
+    <i class="fas fa-sync-alt"></i>
+  </button>
+</div>
+
 <ul class="list-group">
   <ng-container *ngIf="enlistments$ | async as enlistments">
     <ng-container *ngIf="enlistments.length > 0; else emptyContainer">
