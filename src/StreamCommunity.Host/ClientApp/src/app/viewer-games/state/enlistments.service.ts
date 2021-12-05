@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap, tap } from 'rxjs/operators';
 import { Enlistment } from './enlistment.model';
-import { EnlistmentsStore, EnlistmentsState } from './enlistments.store';
+import { EnlistmentsStore } from './enlistments.store';
 
 @Injectable({ providedIn: 'root' })
 export class EnlistmentsService {
@@ -15,9 +15,11 @@ export class EnlistmentsService {
   ) {}
 
   getEnlistments(): Observable<Enlistment[]> {
-    return this.httpClient
-      .get<Enlistment[]>(this.baseUri)
-      .pipe(tap((x) => this.store.set(x)));
+    return this.httpClient.get<Enlistment[]>(this.baseUri).pipe(
+      tap((x) => {
+        this.store.set(x);
+      })
+    );
   }
 
   draw(enlistment: Enlistment) {
@@ -27,6 +29,8 @@ export class EnlistmentsService {
   }
 
   close(enlistment: Enlistment) {
-    return this.httpClient.put(`${this.baseUri}/${enlistment.id}/close`, null);
+    return this.httpClient
+      .put(`${this.baseUri}/${enlistment.id}/close`, null)
+      .pipe(switchMap((x) => this.getEnlistments()));
   }
 }
