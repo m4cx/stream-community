@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using StreamCommunity.Application;
 using StreamCommunity.Persistence;
 using StreamCommunity.Twitch.Configuration;
 
@@ -19,7 +18,7 @@ namespace StreamCommunity.Twitch
             services.AddScoped<TwitchConnector>();
             services.AddHostedService<TwitchConnectorHostedService>();
 
-            services.AddTwitchCommunityApplication(configuration);
+            services.AddTwitchCommunityApplication();
             services.AddTwitchCommunityPersistence(configuration);
 
             return services;

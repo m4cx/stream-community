@@ -26,6 +26,8 @@ ProjectSection(SolutionItems) = preProject
 	.editorconfig = .editorconfig
 EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamCommunity.Application.Tests", "test\StreamCommunity.Application.Tests\StreamCommunity.Application.Tests.csproj", "{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{8378A3AF-1F31-4AF7-9F2D-A6EFF49432D2} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
 		{34CA685A-8D43-4923-8374-C00C45428742} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
 		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3} = {49145D4D-08D4-4F76-9D3E-F63B9ECEC63A}
+		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {949E90CC-6FB4-4C93-8BBB-845D2B37DA5F}
