@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using StreamCommunity.Api;
 
-namespace TwitchCommunity.Web
+namespace StreamCommunity.Host
 {
     /// <summary>
     /// Extension methods for <see cref="IApplicationBuilder"/>.
@@ -34,7 +35,11 @@ namespace TwitchCommunity.Web
             app.UseHttpsRedirection();
 
             app.UseRouting();
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHub<ApiHub>("apihub");
+            });
 
             app.UseStaticFiles();
             if (!env.IsDevelopment())

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EnlistmentsService } from '../../state/enlistments.service';
 import { Enlistment } from '../../state/enlistment.model';
+import * as signalR from '@microsoft/signalr';
 
 @Component({
   selector: 'app-enlistments-page',
@@ -20,6 +21,25 @@ export class EnlistmentsPageComponent implements OnInit {
   ngOnInit() {
     this.enlistments$ = this.enlistmentQuery.selectAll();
     this.enlistmentService.getEnlistments().toPromise();
+
+    const connection = new signalR.HubConnectionBuilder()
+      .configureLogging(signalR.LogLevel.Information)
+      .withUrl('apihub')
+      .build();
+
+    connection
+      .start()
+      .then(() => {
+        console.log('SignalR connected!');
+      })
+      .catch((err) => console.error(err));
+
+    connection.on('notify', (param) => {
+      console.log('Received event: ', param);
+      if (param.type === 'PLAYER_ENLISTED') {
+        this.enlistmentService.getEnlistments().toPromise();
+      }
+    });
   }
 
   async draw(enlistment: Enlistment) {

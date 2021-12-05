@@ -14,15 +14,18 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
     {
         private readonly ITwitchCommunityContext twitchCommunityContext;
         private readonly IDateTimeProvider dateTimeProvider;
+        private readonly IMediator mediator;
         private readonly ILogger<EnlistPlayerCommandHandler> logger;
 
         public EnlistPlayerCommandHandler(
             ITwitchCommunityContext twitchCommunityContext,
             IDateTimeProvider dateTimeProvider,
+            IMediator mediator,
             ILogger<EnlistPlayerCommandHandler> logger)
         {
             this.twitchCommunityContext = twitchCommunityContext;
             this.dateTimeProvider = dateTimeProvider;
+            this.mediator = mediator;
             this.logger = logger;
         }
 
@@ -40,6 +43,8 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
             var enlistment = new Enlistment(request.UserName, dateTimeProvider.UtcNow);
             twitchCommunityContext.Enlistments.Add(enlistment);
             await twitchCommunityContext.SaveChangesAsync(cancellationToken);
+
+            await mediator.Publish(new PlayerEnlisted(request.UserName), cancellationToken);
 
             return Unit.Value;
         }
