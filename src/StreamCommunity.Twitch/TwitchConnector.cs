@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -46,16 +47,17 @@ namespace StreamCommunity.Twitch
         private void InitializeEvents()
         {
             twitchClient.OnConnected += TwitchClient_OnConnected;
-            twitchClient.OnMessageReceived += async (sender, e) => await OnMessageReceived(sender, e);
+            twitchClient.OnChatCommandReceived += async (sender, e)
+                => await OnChatCommandReceived(sender, e);
         }
 
-        private async Task OnMessageReceived(object sender, OnMessageReceivedArgs e)
+        private async Task OnChatCommandReceived(object? sender, OnChatCommandReceivedArgs e)
         {
-            const string EnlistmentKey = "!enlist";
+            const string EnlistmentKey = "enlist";
 
-            if (e.ChatMessage.Message.StartsWith(EnlistmentKey))
+            if (e.Command.CommandText.Equals(EnlistmentKey, StringComparison.InvariantCultureIgnoreCase))
             {
-                var command = new EnlistPlayerCommand(e.ChatMessage.Username);
+                var command = new EnlistPlayerCommand(e.Command.ChatMessage.Username);
                 await mediator.Send(command);
             }
         }

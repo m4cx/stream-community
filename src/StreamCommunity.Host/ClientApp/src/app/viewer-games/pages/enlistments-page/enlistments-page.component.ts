@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { EnlistmentsService } from '../../state/enlistments.service';
 import { Enlistment } from '../../state/enlistment.model';
+import { SignalrService } from 'src/app/common/signalr.service';
 
 @Component({
   selector: 'app-enlistments-page',
@@ -14,12 +15,20 @@ export class EnlistmentsPageComponent implements OnInit {
 
   constructor(
     private enlistmentService: EnlistmentsService,
-    private enlistmentQuery: EnlistmentsQuery
+    private enlistmentQuery: EnlistmentsQuery,
+    private signalrService: SignalrService
   ) {}
 
   ngOnInit() {
     this.enlistments$ = this.enlistmentQuery.selectAll();
     this.enlistmentService.getEnlistments().toPromise();
+
+    this.signalrService.connection.on('notify', (param) => {
+      console.log('Received event: ', param);
+      if (param.type === 'PLAYER_ENLISTED') {
+        this.enlistmentService.getEnlistments().toPromise();
+      }
+    });
   }
 
   async draw(enlistment: Enlistment) {

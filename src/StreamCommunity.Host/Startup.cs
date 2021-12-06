@@ -1,13 +1,14 @@
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using StreamCommunity.Api;
 using StreamCommunity.Api.ViewerGames;
 using StreamCommunity.Persistence;
 using StreamCommunity.Twitch;
-using TwitchCommunity.Web;
 
 namespace StreamCommunity.Host
 {
@@ -24,19 +25,24 @@ namespace StreamCommunity.Host
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddWebApplication();
-            services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(typeof(EnlistmentsController).Assembly));
+            services.AddControllers()
+                .PartManager
+                .ApplicationParts
+                .Add(new AssemblyPart(typeof(EnlistmentsController).Assembly));
 
             services.AddTwitchCommunityPersistence(Configuration);
             services.AddTwitchCommunityConnector(Configuration);
+
+            services.AddMediatR(typeof(ApiHub).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.ApplicationServices.CreateScope()
-               .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
-               .Database
-               .EnsureCreated();
+                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
+                .Database
+                .EnsureCreated();
 
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             logger.LogInformation("Starting");
