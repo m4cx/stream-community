@@ -4,6 +4,7 @@ export interface Enlistment {
   id: number | string;
   userName: string;
   state: EnlistmentState;
+  timestamp: Date;
 }
 
 export function createEnlistment(params: Partial<Enlistment>) {

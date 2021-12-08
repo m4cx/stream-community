@@ -1,0 +1,8 @@
+<body>
+  <ul class="list-group">
+    <li *ngFor="let f of waiting$ | async" class="list-group-item">
+      {{ f.userName }}<br />
+      <small>{{ duration(f) }}</small>
+    </li>
+  </ul>
+</body>

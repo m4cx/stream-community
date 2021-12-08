@@ -1,0 +1,14 @@
+body {
+  background-color: transparent;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: 2px solid #ddd;
+  font-family: 'Bender';
+  font-weight: 700;
+  letter-spacing: 2;
+}
+.list-group-item small {
+  font-size: smaller;
+}

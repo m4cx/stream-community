@@ -17,7 +17,11 @@ export class EnlistmentsService {
   getEnlistments(): Observable<Enlistment[]> {
     return this.httpClient.get<Enlistment[]>(this.baseUri).pipe(
       tap((x) => {
-        this.store.set(x);
+        const mapped = x.map((value, index) => {
+          value.timestamp = new Date(value.timestamp);
+          return value;
+        });
+        this.store.set(mapped);
       })
     );
   }
