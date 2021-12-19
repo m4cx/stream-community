@@ -20,7 +20,7 @@ namespace StreamCommunity.Persistence
             configurationSection.Bind(persistenceConfiguration);
             services.Configure<PersistenceConfiguration>(configurationSection);
 
-            services.AddDbContext<TwitchCommunityDbContext>(options =>
+            services.AddDbContext<StreamCommunityDbContext>(options =>
             {
                 if (persistenceConfiguration.ProviderName == "sqlite")
                 {
@@ -36,8 +36,8 @@ namespace StreamCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<ITwitchCommunityContext>(options =>
-                options.GetRequiredService<TwitchCommunityDbContext>());
+            services.AddScoped<IStreamCommunityContext>(options =>
+                options.GetRequiredService<StreamCommunityDbContext>());
 
             return services;
         }

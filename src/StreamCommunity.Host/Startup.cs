@@ -40,7 +40,7 @@ namespace StreamCommunity.Host
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.ApplicationServices.CreateScope()
-                .ServiceProvider.GetRequiredService<TwitchCommunityDbContext>()
+                .ServiceProvider.GetRequiredService<StreamCommunityDbContext>()
                 .Database
                 .EnsureCreated();
 
