@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments
+namespace StreamCommunity.Application.ViewerGames.Enlistments.Events
 {
     public sealed class PlayerEnlisted : INotification
     {
@@ -11,6 +11,6 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments
 
         public string UserName { get; }
 
-        public string Type => "PLAYER_ENLISTED";
+        public string Type => EventNames.PlayerEnlisted;
     }
 }

@@ -12,10 +12,10 @@ export class SignalrService {
   public initiateSignalrConnection(): Promise<void> {
     return new Promise((resolve, reject) => {
       this.connection = new signalR.HubConnectionBuilder()
-        .withUrl('notify')
+        .withUrl('apihub')
         .build();
 
-      this.connection
+      return this.connection
         .start()
         .then(() => {
           console.log(

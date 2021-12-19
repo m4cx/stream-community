@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
+using StreamCommunity.Application.ViewerGames.Enlistments.Events;
 using StreamCommunity.Domain;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
