@@ -39,6 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StreamCommunity.Api\StreamCommunity.Api.csproj" />
     <ProjectReference Include="..\StreamCommunity.Application\StreamCommunity.Application.csproj" />
+    <ProjectReference Include="..\StreamCommunity.Persistence.Migrations\StreamCommunity.Persistence.Migrations.csproj" />
     <ProjectReference Include="..\StreamCommunity.Twitch\StreamCommunity.Twitch.csproj" />
     <ProjectReference Include="..\StreamCommunity.Persistence\StreamCommunity.Persistence.csproj" />
   </ItemGroup>
