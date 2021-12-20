@@ -12,11 +12,11 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
     [UsedImplicitly]
     internal sealed class DrawEnlistmentsCommandHandler : IRequestHandler<DrawEnlistmentsCommand>
     {
-        private readonly ITwitchCommunityContext communityContext;
+        private readonly IStreamCommunityContext communityContext;
         private readonly IMediator mediator;
 
         public DrawEnlistmentsCommandHandler(
-            [NotNull] ITwitchCommunityContext communityContext,
+            [NotNull] IStreamCommunityContext communityContext,
             [NotNull] IMediator mediator)
         {
             this.communityContext = communityContext ?? throw new ArgumentNullException(nameof(communityContext));

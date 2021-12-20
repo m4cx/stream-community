@@ -19,6 +19,10 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="6.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,6 +39,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StreamCommunity.Api\StreamCommunity.Api.csproj" />
     <ProjectReference Include="..\StreamCommunity.Application\StreamCommunity.Application.csproj" />
+    <ProjectReference Include="..\StreamCommunity.Persistence.Migrations\StreamCommunity.Persistence.Migrations.csproj" />
     <ProjectReference Include="..\StreamCommunity.Twitch\StreamCommunity.Twitch.csproj" />
     <ProjectReference Include="..\StreamCommunity.Persistence\StreamCommunity.Persistence.csproj" />
   </ItemGroup>

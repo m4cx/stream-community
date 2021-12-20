@@ -9,26 +9,24 @@ namespace StreamCommunity.Persistence
 {
     public static class DependencyInjectionExtensions
     {
-        public static IServiceCollection AddTwitchCommunityPersistence(
+        public static IServiceCollection AddStreamCommunityPersistence(
             this IServiceCollection services,
             IConfiguration configuration)
         {
             services.AddOptions();
 
-            var persistenceConfiguration = new PersistenceConfiguration();
-            var configurationSection = configuration.GetSection(PersistenceConfiguration.ConfigurationSectionName);
-            configurationSection.Bind(persistenceConfiguration);
-            services.Configure<PersistenceConfiguration>(configurationSection);
+            var persistenceConfiguration = AddPersistenceConfiguration(services, configuration);
 
-            services.AddDbContext<TwitchCommunityDbContext>(options =>
+            services.AddDbContext<StreamCommunityDbContext>(options =>
             {
-                if (persistenceConfiguration.ProviderName == "sqlite")
+                switch (persistenceConfiguration.ProviderName)
                 {
-                    options.UseSqlite(persistenceConfiguration.ConnectionString);
-                }
-                else if (persistenceConfiguration.ProviderName == "in-memory")
-                {
-                    options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                    case PersistenceProviderNames.SQLITE:
+                        options.UseSqlite(persistenceConfiguration.ConnectionString);
+                        break;
+                    case PersistenceProviderNames.INMEMORY:
+                        options.UseInMemoryDatabase(Guid.NewGuid().ToString());
+                        break;
                 }
 
 #if DEBUG
@@ -36,10 +34,21 @@ namespace StreamCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<ITwitchCommunityContext>(options =>
-                options.GetRequiredService<TwitchCommunityDbContext>());
+            services.AddScoped<IStreamCommunityContext>(options =>
+                options.GetRequiredService<StreamCommunityDbContext>());
 
             return services;
+        }
+
+        private static PersistenceConfiguration AddPersistenceConfiguration(
+            IServiceCollection services,
+            IConfiguration configuration)
+        {
+            var persistenceConfiguration = new PersistenceConfiguration();
+            var configurationSection = configuration.GetSection(PersistenceConfiguration.ConfigurationSectionName);
+            configurationSection.Bind(persistenceConfiguration);
+            services.Configure<PersistenceConfiguration>(configurationSection);
+            return persistenceConfiguration;
         }
     }
 }

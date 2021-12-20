@@ -4,9 +4,9 @@ using StreamCommunity.Domain;
 
 namespace StreamCommunity.Persistence
 {
-    public sealed class TwitchCommunityDbContext : DbContext, ITwitchCommunityContext
+    public sealed class StreamCommunityDbContext : DbContext, IStreamCommunityContext
     {
-        public TwitchCommunityDbContext(DbContextOptions<TwitchCommunityDbContext> dbContextOptions)
+        public StreamCommunityDbContext(DbContextOptions<StreamCommunityDbContext> dbContextOptions)
             : base(dbContextOptions)
         {
         }

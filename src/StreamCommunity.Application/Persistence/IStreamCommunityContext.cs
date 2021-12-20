@@ -5,7 +5,7 @@ using StreamCommunity.Domain;
 
 namespace StreamCommunity.Application.Persistence
 {
-    public interface ITwitchCommunityContext
+    public interface IStreamCommunityContext
     {
         DbSet<Enlistment> Enlistments { get; set; }
 

@@ -13,9 +13,9 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
     [UsedImplicitly]
     internal sealed class GetEnlistmentsRequestHandler : IRequestHandler<GetEnlistmentsRequest, GetEnlistmentsResponse>
     {
-        private readonly ITwitchCommunityContext communityContext;
+        private readonly IStreamCommunityContext communityContext;
 
-        public GetEnlistmentsRequestHandler(ITwitchCommunityContext enlistmentRepository)
+        public GetEnlistmentsRequestHandler(IStreamCommunityContext enlistmentRepository)
         {
             this.communityContext = enlistmentRepository;
         }

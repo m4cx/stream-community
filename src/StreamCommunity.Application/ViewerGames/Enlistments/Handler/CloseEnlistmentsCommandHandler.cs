@@ -13,9 +13,9 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
     internal sealed class
         CloseEnlistmentsCommandHandler : IRequestHandler<CloseEnlistmentsCommand, CloseEnlistmentsCommandResponse>
     {
-        private readonly ITwitchCommunityContext communityContext;
+        private readonly IStreamCommunityContext communityContext;
 
-        public CloseEnlistmentsCommandHandler(ITwitchCommunityContext communityContext)
+        public CloseEnlistmentsCommandHandler(IStreamCommunityContext communityContext)
         {
             this.communityContext = communityContext;
         }

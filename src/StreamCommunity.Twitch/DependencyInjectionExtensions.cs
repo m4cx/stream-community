@@ -20,7 +20,7 @@ namespace StreamCommunity.Twitch
             services.AddHostedService<TwitchConnectorHostedService>();
 
             services.AddTwitchCommunityApplication();
-            services.AddTwitchCommunityPersistence(configuration);
+            services.AddStreamCommunityPersistence(configuration);
 
             return services;
         }
