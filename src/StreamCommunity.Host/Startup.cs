@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -30,7 +31,7 @@ namespace StreamCommunity.Host
                 .ApplicationParts
                 .Add(new AssemblyPart(typeof(EnlistmentsController).Assembly));
 
-            services.AddTwitchCommunityPersistence(Configuration);
+            services.AddStreamCommunityPersistence(Configuration);
             services.AddTwitchCommunityConnector(Configuration);
 
             services.AddMediatR(typeof(ApiHub).Assembly);
@@ -42,7 +43,7 @@ namespace StreamCommunity.Host
             app.ApplicationServices.CreateScope()
                 .ServiceProvider.GetRequiredService<StreamCommunityDbContext>()
                 .Database
-                .EnsureCreated();
+                .Migrate();
 
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             logger.LogInformation("Starting");
