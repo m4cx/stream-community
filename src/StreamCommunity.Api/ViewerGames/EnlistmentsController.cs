@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.ViewerGames.Enlistments;
 
 namespace StreamCommunity.Api.ViewerGames

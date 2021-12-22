@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using MediatR;
-using StreamCommunity.Application.Enlistments;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments
 {

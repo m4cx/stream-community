@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Domain;
 

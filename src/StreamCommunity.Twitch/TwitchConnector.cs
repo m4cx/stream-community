@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using StreamCommunity.Application.Enlistments;
+using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Twitch.Configuration;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
