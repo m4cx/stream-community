@@ -25,7 +25,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
         {
             var enlistmentsToClose = await communityContext.Enlistments
                 .Where(x => request.EnlistmentIds.Contains(x.Id))
-                .ToListAsync();
+                .ToListAsync(cancellationToken: cancellationToken);
 
             foreach (var enlistment in enlistmentsToClose)
             {
