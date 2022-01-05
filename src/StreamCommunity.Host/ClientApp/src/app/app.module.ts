@@ -13,22 +13,31 @@ import { CardComponent } from './home/components/card/card.component';
 import { SignalrService } from './common/signalr.service';
 import { CommonModule } from './common/common.module';
 
+const routes = [
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'viewer-games',
+    loadChildren: () =>
+      import('./viewer-games/viewer-games.module').then(
+        (m) => m.ViewerGamesModule
+      ),
+  },
+  { path: 'overlay', component: OverlaysPageComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+];
 @NgModule({
   declarations: [AppComponent, HomeComponent, CardComponent],
   imports: [
     ViewerGamesModule,
-    BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserModule,
     HttpClientModule,
     FormsModule,
     CommonModule,
-    RouterModule.forRoot(
-      [
-        { path: '', component: HomeComponent, pathMatch: 'full' },
-        { path: 'enlistments', component: EnlistmentsPageComponent },
-        { path: 'overlay', component: OverlaysPageComponent },
-      ],
-      { relativeLinkResolution: 'legacy' }
-    ),
+    RouterModule.forRoot(routes, {
+      useHash: true,
+      relativeLinkResolution: 'legacy',
+      enableTracing: true,
+    }),
   ],
   providers: [
     {
