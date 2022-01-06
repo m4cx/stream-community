@@ -36,7 +36,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
                 x => x.UserName == request.UserName
                      && (x.State == EnlistmentState.Active || x.State == EnlistmentState.Open)))
             {
-                logger.LogInformation("User {userName} has already an open or active enlistment", request.UserName);
+                logger.LogInformation("User {UserName} has already an open or active enlistment", request.UserName);
                 return Unit.Value;
             }
 

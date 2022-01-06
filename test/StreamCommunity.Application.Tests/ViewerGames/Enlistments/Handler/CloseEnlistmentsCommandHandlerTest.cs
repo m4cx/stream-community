@@ -1,10 +1,11 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
-using Moq;
 using NUnit.Framework;
-using StreamCommunity.Application.Persistence;
 using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Application.ViewerGames.Enlistments.Handler;
+using StreamCommunity.Domain;
+using StreamCommunity.Domain.Exceptions;
 
 namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 
@@ -12,18 +13,39 @@ namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 public class CloseEnlistmentsCommandHandlerTest : MockDbTestBase
 {
     private CloseEnlistmentsCommandHandler instance;
-    private Mock<IStreamCommunityContext> contextMock;
 
     [SetUp]
     public void Setup()
     {
-        contextMock = new Mock<IStreamCommunityContext>();
-        instance = new CloseEnlistmentsCommandHandler(contextMock.Object);
+        instance = new CloseEnlistmentsCommandHandler(DbContext);
     }
 
     [Test]
-    public async Task Handle()
+    public async Task Handle_EnlistmentInStateActive_IsClosedAsync()
     {
-        await instance.Handle(new CloseEnlistmentsCommand(new[] { 123 }), CancellationToken.None);
+        var enlistment = new Enlistment("testUser", DateTime.Now);
+        enlistment.Draw();
+        DbContext.Enlistments.Add(enlistment);
+        await DbContext.SaveChangesAsync();
+        
+        await instance.Handle(new CloseEnlistmentsCommand(new[] { enlistment.Id }), CancellationToken.None);
+        
+        Assert.AreEqual(EnlistmentState.Closed, enlistment.State);
+    } 
+    
+    [Test]
+    public async Task Handle_EnlistmentNotInStateActive_ThrowsEnlistmentExceptionAsync()
+    {
+        var enlistment = new Enlistment("testUser", DateTime.Now);
+        DbContext.Enlistments.Add(enlistment);
+        await DbContext.SaveChangesAsync();
+        
+        Assert.ThrowsAsync<EnlistmentException>(() => instance.Handle(new CloseEnlistmentsCommand(new[] { enlistment.Id }), CancellationToken.None));
+        
+        enlistment.Draw();
+        enlistment.Close();
+        await DbContext.SaveChangesAsync();
+        
+        Assert.ThrowsAsync<EnlistmentException>(() => instance.Handle(new CloseEnlistmentsCommand(new[] { enlistment.Id }), CancellationToken.None));
     } 
 }

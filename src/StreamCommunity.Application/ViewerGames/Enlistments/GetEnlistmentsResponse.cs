@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using StreamCommunity.Domain;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments
@@ -7,7 +8,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments
     {
         public GetEnlistmentsResponse(IEnumerable<Enlistment> enlistments)
         {
-            Enlistments = enlistments;
+            Enlistments = enlistments ?? throw new ArgumentNullException(nameof(enlistments));
         }
 
         public IEnumerable<Enlistment> Enlistments { get; }

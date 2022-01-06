@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\src\StreamCommunity.Application\StreamCommunity.Application.csproj" />
+      <ProjectReference Include="..\..\src\StreamCommunity.Persistence\StreamCommunity.Persistence.csproj" />
     </ItemGroup>
 
 </Project>

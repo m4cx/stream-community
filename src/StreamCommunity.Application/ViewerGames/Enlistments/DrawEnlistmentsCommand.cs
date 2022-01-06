@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MediatR;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments
@@ -7,7 +8,8 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments
     {
         public DrawEnlistmentsCommand(IEnumerable<int> selectedEnlistmentIds)
         {
-            SelectedEnlistmentIds = selectedEnlistmentIds;
+            SelectedEnlistmentIds =
+                selectedEnlistmentIds ?? throw new ArgumentNullException(nameof(selectedEnlistmentIds));
         }
 
         public IEnumerable<int> SelectedEnlistmentIds { get; }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using System;
+using MediatR;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments.Events
 {
@@ -6,7 +7,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Events
     {
         public PlayerDrawn(string userName)
         {
-            UserName = userName;
+            UserName = userName ?? throw new ArgumentNullException(nameof(userName));
         }
 
         public string UserName { get; }
