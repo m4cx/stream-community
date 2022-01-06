@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
@@ -26,7 +25,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
         {
             var enlistmentsToClose = await communityContext.Enlistments
                 .Where(x => request.EnlistmentIds.Contains(x.Id))
-                .ToListAsync();
+                .ToListAsync(cancellationToken: cancellationToken);
 
             foreach (var enlistment in enlistmentsToClose)
             {

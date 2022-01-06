@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using StreamCommunity.Application.Enlistments;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Domain;
 
@@ -17,7 +16,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
 
         public GetEnlistmentsRequestHandler(IStreamCommunityContext enlistmentRepository)
         {
-            this.communityContext = enlistmentRepository;
+            communityContext = enlistmentRepository;
         }
 
         public async Task<GetEnlistmentsResponse> Handle(
@@ -25,14 +24,9 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
             CancellationToken cancellationToken = default)
         {
             IQueryable<Enlistment> query = communityContext.Enlistments;
-            if (request.State.HasValue)
-            {
-                query = query.Where(x => x.State == request.State.Value);
-            }
-            else
-            {
-                query = query.Where(x => x.State == EnlistmentState.Open || x.State == EnlistmentState.Active);
-            }
+            query = request.State.HasValue
+                ? query.Where(x => x.State == request.State.Value)
+                : query.Where(x => x.State == EnlistmentState.Open || x.State == EnlistmentState.Active);
 
             var enlistments = await query.ToArrayAsync(cancellationToken);
             return new GetEnlistmentsResponse(enlistments);

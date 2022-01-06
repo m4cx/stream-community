@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamCommunity.Application
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamCommunity.Persistence.Migrations", "src\StreamCommunity.Persistence.Migrations\StreamCommunity.Persistence.Migrations.csproj", "{F79710A1-F01A-460B-AA41-BBE8079D5836}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StreamCommunity.Domain.Tests", "test\StreamCommunity.Domain.Tests\StreamCommunity.Domain.Tests.csproj", "{DB83D9B1-194C-48DD-A59A-7FB6FD804539}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{F79710A1-F01A-460B-AA41-BBE8079D5836}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F79710A1-F01A-460B-AA41-BBE8079D5836}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F79710A1-F01A-460B-AA41-BBE8079D5836}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB83D9B1-194C-48DD-A59A-7FB6FD804539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB83D9B1-194C-48DD-A59A-7FB6FD804539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB83D9B1-194C-48DD-A59A-7FB6FD804539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB83D9B1-194C-48DD-A59A-7FB6FD804539}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{1CA62B9B-DD7A-4FFA-AD3F-8CFBE9B273C3} = {49145D4D-08D4-4F76-9D3E-F63B9ECEC63A}
 		{CC926F8D-CDD3-4C1C-AD8B-D7A70E81C05D} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
 		{F79710A1-F01A-460B-AA41-BBE8079D5836} = {0D5B28A5-E4F1-4CC3-90D5-EE3C5219D90D}
+		{DB83D9B1-194C-48DD-A59A-7FB6FD804539} = {6F9C60C1-00F1-4B98-89DE-514DADF65A6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {949E90CC-6FB4-4C93-8BBB-845D2B37DA5F}

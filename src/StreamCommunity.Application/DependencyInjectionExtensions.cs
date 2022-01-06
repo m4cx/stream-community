@@ -11,7 +11,6 @@ namespace StreamCommunity.Application
             services.AddMediatR(typeof(DependencyInjectionExtensions).Assembly);
 
             services.AddTransient<IDateTimeProvider, DefaultDateTimeProvider>();
-
             return services;
         }
     }
