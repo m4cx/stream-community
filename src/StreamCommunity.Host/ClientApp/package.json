@@ -11,15 +11,15 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "12.2.12",
-    "@angular/common": "12.2.12",
-    "@angular/compiler": "12.2.12",
-    "@angular/core": "12.2.12",
-    "@angular/forms": "12.2.12",
-    "@angular/platform-browser": "12.2.12",
-    "@angular/platform-browser-dynamic": "12.2.12",
-    "@angular/platform-server": "12.2.12",
-    "@angular/router": "12.2.12",
+    "@angular/animations": "13.1.1",
+    "@angular/common": "13.1.1",
+    "@angular/compiler": "13.1.1",
+    "@angular/core": "13.1.1",
+    "@angular/forms": "13.1.1",
+    "@angular/platform-browser": "13.1.1",
+    "@angular/platform-browser-dynamic": "13.1.1",
+    "@angular/platform-server": "13.1.1",
+    "@angular/router": "13.1.1",
     "@datorama/akita": "^6.2.4",
     "@datorama/akita-ng-entity-service": "^6.2.0",
     "@fortawesome/fontawesome-free": "^5.15.4",
@@ -34,10 +34,10 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.2.12",
-    "@angular/cli": "^12.2.12",
-    "@angular/compiler-cli": "^12.2.12",
-    "@angular/language-service": "^12.2.12",
+    "@angular-devkit/build-angular": "~13.1.2",
+    "@angular/cli": "^13.1.2",
+    "@angular/compiler-cli": "^13.1.1",
+    "@angular/language-service": "^13.1.1",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "^2.0.10",
     "@types/node": "^12.20.36",
@@ -50,7 +50,7 @@
     "karma-coverage-istanbul-reporter": "~3.0.2",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
-    "typescript": "4.3.5"
+    "typescript": "4.5.4"
   },
   "optionalDependencies": {
     "node-sass": "^5.0.0",
