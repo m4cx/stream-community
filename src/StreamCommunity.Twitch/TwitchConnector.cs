@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using StreamCommunity.Application.Common;
 using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Twitch.Configuration;
 using TwitchLib.Client;
@@ -14,9 +15,10 @@ using TwitchLib.Communication.Models;
 
 namespace StreamCommunity.Twitch
 {
-    public sealed class TwitchConnector
+    public sealed class TwitchConnector : IChatMessaging
     {
         private readonly TwitchClient twitchClient;
+        private readonly IOptions<TwitchConnectorConfiguration> connectorConfiguration;
         private readonly IMediator mediator;
         private readonly ILogger<TwitchConnector> logger;
 
@@ -25,6 +27,7 @@ namespace StreamCommunity.Twitch
             IMediator mediator,
             ILogger<TwitchConnector> logger)
         {
+            this.connectorConfiguration = connectorConfiguration;
             this.mediator = mediator;
             this.logger = logger;
 
@@ -66,6 +69,12 @@ namespace StreamCommunity.Twitch
         private void TwitchClient_OnConnected(object sender, OnConnectedArgs e)
         {
             logger.LogInformation("Connected to {channel}", e.AutoJoinChannel);
+        }
+
+        public Task SendMessageAsync(string message)
+        {
+            twitchClient.SendMessage(connectorConfiguration.Value.Channel, message);
+            return Task.CompletedTask;
         }
     }
 }
