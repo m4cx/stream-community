@@ -8,7 +8,7 @@ using StreamCommunity.Application.ViewerGames.Enlistments.Handler;
 
 namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 
-public class PlayerEnlistmentFailedEventHandlerTest
+public class PlayerEnlistmentFailedEventHandlerTest : MockDbTestBase
 {
     private Mock<IChatMessaging> chatMessagingMock = null!;
     private PlayerEnlistmentFailedEventHandler instance = null!;
@@ -18,7 +18,7 @@ public class PlayerEnlistmentFailedEventHandlerTest
     {
         chatMessagingMock = new Mock<IChatMessaging>();
 
-        instance = new PlayerEnlistmentFailedEventHandler(chatMessagingMock.Object);
+        instance = new PlayerEnlistmentFailedEventHandler(DbContext, chatMessagingMock.Object);
     }
 
     [Test]

@@ -8,17 +8,17 @@ using StreamCommunity.Application.ViewerGames.Enlistments.Handler;
 
 namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 
-public class PlayerEnlistedEventHandlerTest
+public class PlayerEnlistedEventHandlerTest : MockDbTestBase
 {
     private Mock<IChatMessaging> chatMessagingMock = null!;
     private PlayerEnlistedEventHandler instance = null!;
 
     [SetUp]
-    public void Setup()
+    public void SetUp()
     {
         chatMessagingMock = new Mock<IChatMessaging>();
 
-        instance = new PlayerEnlistedEventHandler(chatMessagingMock.Object);
+        instance = new PlayerEnlistedEventHandler(DbContext, chatMessagingMock.Object);
     }
 
     [Test]
