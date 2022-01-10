@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StreamCommunity.Api;
 using StreamCommunity.Api.ViewerGames;
+using StreamCommunity.Application.Persistence;
 using StreamCommunity.Persistence;
 using StreamCommunity.Twitch;
 
@@ -41,7 +42,7 @@ namespace StreamCommunity.Host
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.ApplicationServices.CreateScope()
-                .ServiceProvider.GetRequiredService<StreamCommunityDbContext>()
+                .ServiceProvider.GetRequiredService<IStreamCommunityContext>()
                 .Database
                 .Migrate();
 

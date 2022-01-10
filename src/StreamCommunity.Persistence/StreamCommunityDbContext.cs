@@ -4,7 +4,7 @@ using StreamCommunity.Domain;
 
 namespace StreamCommunity.Persistence
 {
-    public sealed class StreamCommunityDbContext : DbContext, IStreamCommunityContext
+    internal sealed class StreamCommunityDbContext : DbContext, IStreamCommunityContext
     {
         public StreamCommunityDbContext(DbContextOptions<StreamCommunityDbContext> dbContextOptions)
             : base(dbContextOptions)
@@ -12,6 +12,8 @@ namespace StreamCommunity.Persistence
         }
 
         public DbSet<Enlistment> Enlistments { get; set; }
+
+        public DbSet<ChatMessageTemplate> ChatMessageTemplates { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
