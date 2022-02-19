@@ -15,7 +15,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler;
 [UsedImplicitly]
 internal sealed class PlayerEnlistmentFailedEventHandler : INotificationHandler<PlayerEnlistmentFailed>
 {
-    private static readonly ChatMessageTemplate DefaultResponseMessage = new(
+    private static readonly ChatMessageTemplate DefaultResponseMessage = new (
         ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
         "Viewer Game konnte nicht für {UserName} vorgemerkt werden. {Reason}");
 

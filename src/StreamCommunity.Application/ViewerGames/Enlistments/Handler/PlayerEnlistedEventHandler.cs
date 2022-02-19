@@ -16,7 +16,8 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler;
 internal sealed class PlayerEnlistedEventHandler : INotificationHandler<PlayerEnlisted>
 {
     private static readonly ChatMessageTemplate DefaultResponseMessage =
-        new ChatMessageTemplate(ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
+        new ChatMessageTemplate(
+            ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
             "Viewer Game erfolgreich für {UserName} vorgemerkt.");
 
     private readonly IStreamCommunityContext communityContext;

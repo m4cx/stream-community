@@ -12,10 +12,10 @@ namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 [TestFixture]
 public class CloseEnlistmentsCommandHandlerTest : MockDbTestBase
 {
-    private CloseEnlistmentsCommandHandler instance;
+    private CloseEnlistmentsCommandHandler instance = null!;
 
     [SetUp]
-    public void Setup()
+    public void SetUp()
     {
         instance = new CloseEnlistmentsCommandHandler(DbContext);
     }
