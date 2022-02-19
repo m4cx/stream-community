@@ -48,6 +48,12 @@ namespace StreamCommunity.Twitch
 
         public void Disconnect() => twitchClient.Disconnect();
 
+        public Task SendMessageAsync(string message)
+        {
+            twitchClient.SendMessage(connectorConfiguration.Value.Channel, message);
+            return Task.CompletedTask;
+        }
+
         private void InitializeEvents()
         {
             twitchClient.OnConnected += TwitchClient_OnConnected;
@@ -66,15 +72,9 @@ namespace StreamCommunity.Twitch
             }
         }
 
-        private void TwitchClient_OnConnected(object sender, OnConnectedArgs e)
+        private void TwitchClient_OnConnected(object? sender, OnConnectedArgs e)
         {
             logger.LogInformation("Connected to {channel}", e.AutoJoinChannel);
-        }
-
-        public Task SendMessageAsync(string message)
-        {
-            twitchClient.SendMessage(connectorConfiguration.Value.Channel, message);
-            return Task.CompletedTask;
         }
     }
 }

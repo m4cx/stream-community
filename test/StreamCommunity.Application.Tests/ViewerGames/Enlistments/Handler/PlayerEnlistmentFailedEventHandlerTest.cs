@@ -14,7 +14,7 @@ public class PlayerEnlistmentFailedEventHandlerTest : MockDbTestBase
     private PlayerEnlistmentFailedEventHandler instance = null!;
 
     [SetUp]
-    public void Setup()
+    public void SetUp()
     {
         chatMessagingMock = new Mock<IChatMessaging>();
 

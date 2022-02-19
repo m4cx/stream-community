@@ -14,7 +14,8 @@ public class PlayerEnlistmentFailed : INotification
     /// </summary>
     /// <param name="userName">The name of the viewer.</param>
     /// <param name="reason">An additional reason (optional).</param>
-    /// <exception cref="ArgumentNullException">If null is provided for the <param name="userName"></param>.</exception>
+    /// <exception cref="ArgumentNullException">If null is provided for the userName parameter.
+    /// </exception>
     public PlayerEnlistmentFailed(string userName, string reason = null)
     {
         UserName = userName ?? throw new ArgumentNullException(nameof(userName));
@@ -27,7 +28,7 @@ public class PlayerEnlistmentFailed : INotification
     public string UserName { get; }
 
     /// <summary>
-    /// Gets an additional reason why the enlistment failed. (optional - can be null)
+    /// Gets an additional reason why the enlistment failed. (optional - can be null).
     /// </summary>
     [CanBeNull]
     public string Reason { get; }
