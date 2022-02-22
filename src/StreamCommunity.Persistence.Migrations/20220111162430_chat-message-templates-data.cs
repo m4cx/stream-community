@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using Microsoft.EntityFrameworkCore.Migrations;
 using StreamCommunity.Application;
+using StreamCommunity.Application.ChatMessages;
 
 #nullable disable
 
