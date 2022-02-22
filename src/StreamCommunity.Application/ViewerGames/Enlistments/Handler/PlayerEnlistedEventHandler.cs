@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using StreamCommunity.Application.ChatMessages;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Application.ViewerGames.Enlistments.Events;

@@ -1,4 +1,4 @@
-﻿namespace StreamCommunity.Application;
+﻿namespace StreamCommunity.Application.ChatMessages;
 
 public static class ChatMessageTemplateIdentifiers
 {
