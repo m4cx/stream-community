@@ -36,8 +36,8 @@ namespace StreamCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<IStreamCommunityContext>(options =>
-                options.GetRequiredService<StreamCommunityDbContext>());
+            services.AddTransient<IStreamCommunityContext>(provider =>
+                provider.GetRequiredService<StreamCommunityDbContext>());
 
             return services;
         }

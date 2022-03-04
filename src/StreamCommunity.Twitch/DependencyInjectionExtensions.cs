@@ -24,7 +24,7 @@ namespace StreamCommunity.Twitch
 
             services.AddMediatR(typeof(DependencyInjectionExtensions).Assembly);
 
-            services.AddTwitchCommunityApplication();
+            services.AddTwitchCommunityApplication(configuration);
             services.AddStreamCommunityPersistence(configuration);
 
             return services;

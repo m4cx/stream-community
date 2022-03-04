@@ -8,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using StreamCommunity.Api;
 using StreamCommunity.Api.ViewerGames;
+using StreamCommunity.Application;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Persistence;
 using StreamCommunity.Twitch;
@@ -45,6 +46,8 @@ namespace StreamCommunity.Host
                 .ServiceProvider.GetRequiredService<IStreamCommunityContext>()
                 .Database
                 .Migrate();
+
+            app.ApplyChatMessageTemplatesFromConfiguration();
 
             var logger = app.ApplicationServices.GetRequiredService<ILogger<Startup>>();
             logger.LogInformation("Starting");
