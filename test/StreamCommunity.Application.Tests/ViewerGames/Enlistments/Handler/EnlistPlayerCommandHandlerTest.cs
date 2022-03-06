@@ -16,6 +16,8 @@ namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
 
 public class EnlistPlayerCommandHandlerTest : MockDbTestBase
 {
+    private const string UserName = "testUser";
+
     private Mock<IDateTimeProvider> dateTimeProviderMock = null!;
     private Mock<IMediator> mediatorMock = null!;
     private Mock<ILogger<EnlistPlayerCommandHandler>> loggerMock = null!;
@@ -35,39 +37,35 @@ public class EnlistPlayerCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithNewEnlistment_DatabaseEntryIsCreatedAsync()
     {
-        var userName = "testUser";
-        await instance.Handle(new EnlistPlayerCommand(userName), CancellationToken.None);
+        await instance.Handle(new EnlistPlayerCommand(UserName), CancellationToken.None);
 
-        var savedEnlistment = DbContext.Enlistments.SingleOrDefault(x => x.UserName == userName);
+        var savedEnlistment = DbContext.Enlistments.SingleOrDefault(x => x.UserName == UserName);
         Assert.IsNotNull(savedEnlistment);
     }
 
     [Test]
     public async Task Handle_WithNewEnlistment_PlayerEnlistedIsSentAsync()
     {
-        var userName = "testUser";
-        await instance.Handle(new EnlistPlayerCommand(userName), CancellationToken.None);
+        await instance.Handle(new EnlistPlayerCommand(UserName), CancellationToken.None);
 
         mediatorMock.Verify(
             x => x.Publish(
-                It.Is<PlayerEnlisted>(pe => pe.UserName == userName),
+                It.Is<PlayerEnlisted>(pe => pe.UserName == UserName),
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
-    
+
     [Test]
     public async Task Handle_WithExistingEnlistment_PlayerEnlistmentFailedIsSentAsync()
     {
-        var userName = "testUser";
-
-        DbContext.Enlistments.Add(new Enlistment(userName, DateTime.Now));
+        DbContext.Enlistments.Add(new Enlistment(UserName, DateTime.Now));
         await DbContext.SaveChangesAsync();
-        
-        await instance.Handle(new EnlistPlayerCommand(userName), CancellationToken.None);
+
+        await instance.Handle(new EnlistPlayerCommand(UserName), CancellationToken.None);
 
         mediatorMock.Verify(
             x => x.Publish(
-                It.Is<PlayerEnlistmentFailed>(pe => pe.UserName == userName),
+                It.Is<PlayerEnlistmentFailed>(pe => pe.UserName == UserName),
                 It.IsAny<CancellationToken>()),
             Times.Once);
     }
@@ -75,12 +73,11 @@ public class EnlistPlayerCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithExistingEnlistment_LogoutputIsLoggedAsync()
     {
-        var userName = "testUser";
-        var enlistment = new Enlistment(userName, DateTime.Now);
+        var enlistment = new Enlistment(UserName, DateTime.Now);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
 
-        await instance.Handle(new EnlistPlayerCommand(userName), CancellationToken.None);
+        await instance.Handle(new EnlistPlayerCommand(UserName), CancellationToken.None);
 
         loggerMock.Verify(
             x => x.Log(
@@ -88,7 +85,7 @@ public class EnlistPlayerCommandHandlerTest : MockDbTestBase
                 It.IsAny<EventId>(),
                 It.IsAny<It.IsAnyType>(),
                 It.IsAny<Exception>(),
-                (Func<It.IsAnyType, Exception?, string>)It.IsAny<object>()),
+                (Func<It.IsAnyType, Exception?, string>) It.IsAny<object>()),
             Times.Once);
     }
 }

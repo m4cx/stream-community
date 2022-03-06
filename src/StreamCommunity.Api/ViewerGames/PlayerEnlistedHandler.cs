@@ -21,7 +21,7 @@ namespace StreamCommunity.Api.ViewerGames
 
         public async Task Handle(PlayerEnlisted notification, CancellationToken cancellationToken)
         {
-            await hubContext.Clients.All.SendAsync("notify", notification, cancellationToken: cancellationToken);
+            await hubContext.Clients.All.SendAsync("notify", notification, cancellationToken);
         }
     }
 }
