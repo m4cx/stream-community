@@ -21,12 +21,12 @@ namespace StreamCommunity.Persistence
             {
                 switch (persistenceConfiguration.ProviderName)
                 {
-                    case PersistenceProviderNames.SQLITE:
+                    case PersistenceProviderNames.Sqlite:
                         options.UseSqlite(
                             persistenceConfiguration.ConnectionString,
                             sqliteOptions => sqliteOptions.MigrationsAssembly("StreamCommunity.Persistence.Migrations"));
                         break;
-                    case PersistenceProviderNames.INMEMORY:
+                    case PersistenceProviderNames.InMemory:
                         options.UseInMemoryDatabase(Guid.NewGuid().ToString());
                         break;
                 }
