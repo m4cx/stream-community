@@ -1,5 +1,6 @@
 ﻿using System;
 using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 using StreamCommunity.Application.Common;
@@ -19,8 +20,10 @@ namespace StreamCommunity.Application.Tests
             // Arrange
             var services = new ServiceCollection();
 
+            var configuration = new ConfigurationBuilder().Build();
+
             // Act
-            services.AddTwitchCommunityApplication();
+            services.AddTwitchCommunityApplication(configuration);
 
             // Assert
             var provider = services.BuildServiceProvider();

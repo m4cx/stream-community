@@ -21,12 +21,12 @@ namespace StreamCommunity.Persistence
             {
                 switch (persistenceConfiguration.ProviderName)
                 {
-                    case PersistenceProviderNames.SQLITE:
+                    case PersistenceProviderNames.Sqlite:
                         options.UseSqlite(
                             persistenceConfiguration.ConnectionString,
                             sqliteOptions => sqliteOptions.MigrationsAssembly("StreamCommunity.Persistence.Migrations"));
                         break;
-                    case PersistenceProviderNames.INMEMORY:
+                    case PersistenceProviderNames.InMemory:
                         options.UseInMemoryDatabase(Guid.NewGuid().ToString());
                         break;
                 }
@@ -36,8 +36,8 @@ namespace StreamCommunity.Persistence
 #endif
             });
 
-            services.AddScoped<IStreamCommunityContext>(options =>
-                options.GetRequiredService<StreamCommunityDbContext>());
+            services.AddTransient<IStreamCommunityContext>(provider =>
+                provider.GetRequiredService<StreamCommunityDbContext>());
 
             return services;
         }

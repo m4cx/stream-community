@@ -37,6 +37,7 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
                      && (x.State == EnlistmentState.Active || x.State == EnlistmentState.Open)))
             {
                 logger.LogInformation("User {UserName} has already an open or active enlistment", request.UserName);
+                await mediator.Publish(new PlayerEnlistmentFailed(request.UserName, "Bereits vorgemerkt"), cancellationToken);
                 return Unit.Value;
             }
 

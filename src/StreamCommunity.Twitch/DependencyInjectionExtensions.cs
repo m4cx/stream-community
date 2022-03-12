@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using StreamCommunity.Application;
+using StreamCommunity.Application.Common;
 using StreamCommunity.Persistence;
 using StreamCommunity.Twitch.Configuration;
 
@@ -17,9 +19,12 @@ namespace StreamCommunity.Twitch
             var configurationSection = configuration.GetSection(ConfigurationSectionName);
             services.Configure<TwitchConnectorConfiguration>(configurationSection);
             services.AddScoped<TwitchConnector>();
+            services.AddScoped<IChatMessaging>(provider => provider.GetRequiredService<TwitchConnector>());
             services.AddHostedService<TwitchConnectorHostedService>();
 
-            services.AddTwitchCommunityApplication();
+            services.AddMediatR(typeof(DependencyInjectionExtensions).Assembly);
+
+            services.AddTwitchCommunityApplication(configuration);
             services.AddStreamCommunityPersistence(configuration);
 
             return services;
