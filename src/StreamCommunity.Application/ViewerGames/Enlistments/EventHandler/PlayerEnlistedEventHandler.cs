@@ -11,38 +11,39 @@ using StreamCommunity.Application.Persistence;
 using StreamCommunity.Application.ViewerGames.Enlistments.Events;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler;
+namespace StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
 
 [UsedImplicitly]
-internal sealed class PlayerEnlistmentFailedEventHandler : INotificationHandler<PlayerEnlistmentFailed>
+internal sealed class PlayerEnlistedEventHandler : INotificationHandler<PlayerEnlisted>
 {
-    private static readonly ChatMessageTemplate DefaultResponseMessage = new (
-        ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
-        "Viewer Game konnte nicht für {UserName} vorgemerkt werden. {Reason}");
+    private static readonly ChatMessageTemplate DefaultResponseMessage =
+        new ChatMessageTemplate(
+            ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
+            "Viewer Game erfolgreich für {UserName} vorgemerkt.");
 
     private readonly IStreamCommunityContext communityContext;
     private readonly IChatMessaging messaging;
 
-    public PlayerEnlistmentFailedEventHandler(IStreamCommunityContext communityContext, IChatMessaging messaging)
+    public PlayerEnlistedEventHandler(IStreamCommunityContext communityContext, IChatMessaging messaging)
     {
         this.communityContext = communityContext ?? throw new ArgumentNullException(nameof(communityContext));
         this.messaging = messaging ?? throw new ArgumentNullException(nameof(messaging));
     }
 
-    public async Task Handle(PlayerEnlistmentFailed notification, CancellationToken cancellationToken)
+    public async Task Handle(PlayerEnlisted notification, CancellationToken cancellationToken)
     {
         var messageTemplate = await communityContext.ChatMessageTemplates
             .SingleOrDefaultAsync(
-                x => x.Identifier == ChatMessageTemplateIdentifiers.PlayerEnlistmentFailedEventHandler,
+                x => x.Identifier == ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
                 cancellationToken);
         messageTemplate ??= DefaultResponseMessage;
 
         var replacements = new Dictionary<string, string>
         {
-            { "{UserName}", notification.UserName },
-            { "{Reason}", notification.Reason }
+            { "{UserName}", notification.UserName }
         };
 
-        await messaging.SendMessageAsync(messageTemplate.Replace(replacements));
+        var message = messageTemplate?.Replace(replacements);
+        await messaging.SendMessageAsync(message);
     }
 }
