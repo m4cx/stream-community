@@ -4,7 +4,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using StreamCommunity.Application.ChatMessages;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Persistence;
@@ -14,30 +13,26 @@ using StreamCommunity.Domain;
 namespace StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
 
 [UsedImplicitly]
-internal sealed class PlayerEnlistedEventHandler : INotificationHandler<PlayerEnlisted>
+internal sealed class PlayerEnlistedEventHandler : ChatMessageEventHandlerBase, INotificationHandler<PlayerEnlisted>
 {
     private static readonly ChatMessageTemplate DefaultResponseMessage =
         new ChatMessageTemplate(
             ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
             "Viewer Game erfolgreich für {UserName} vorgemerkt.");
 
-    private readonly IStreamCommunityContext communityContext;
     private readonly IChatMessaging messaging;
 
     public PlayerEnlistedEventHandler(IStreamCommunityContext communityContext, IChatMessaging messaging)
+        : base(communityContext)
     {
-        this.communityContext = communityContext ?? throw new ArgumentNullException(nameof(communityContext));
         this.messaging = messaging ?? throw new ArgumentNullException(nameof(messaging));
     }
 
+    protected override string ChatMessageTemplateIdentifier => ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler;
+
     public async Task Handle(PlayerEnlisted notification, CancellationToken cancellationToken)
     {
-        var messageTemplate = await communityContext.ChatMessageTemplates
-            .SingleOrDefaultAsync(
-                x => x.Identifier == ChatMessageTemplateIdentifiers.PlayerEnlistedEventHandler,
-                cancellationToken);
-        messageTemplate ??= DefaultResponseMessage;
-
+        var messageTemplate = await GetChatMessageTemplateAsync(cancellationToken) ?? DefaultResponseMessage;
         var replacements = new Dictionary<string, string>
         {
             { "{UserName}", notification.UserName }
