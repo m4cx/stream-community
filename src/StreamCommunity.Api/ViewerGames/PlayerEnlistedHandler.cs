@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using StreamCommunity.Application.ViewerGames;
-using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Application.ViewerGames.Enlistments.Events;
 
 namespace StreamCommunity.Api.ViewerGames

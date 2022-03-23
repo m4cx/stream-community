@@ -3,7 +3,7 @@ using MediatR;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments.Events;
 
-public sealed class PlayerWithdrawn : INotification
+public sealed class PlayerWithdrawn : EventBase, INotification
 {
     public PlayerWithdrawn(string userName)
     {
@@ -11,4 +11,6 @@ public sealed class PlayerWithdrawn : INotification
     }
 
     public string UserName { get; }
+
+    public override string Type => EventNames.PlayerWithdrawn;
 }

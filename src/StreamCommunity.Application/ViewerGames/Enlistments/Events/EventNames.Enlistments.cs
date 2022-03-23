@@ -16,5 +16,10 @@ namespace StreamCommunity.Application.ViewerGames
         /// Player Drawn Event Name.
         /// </summary>
         public const string PlayerDrawn = "PLAYER_DRAWN";
+
+        /// <summary>
+        /// Player Withdrawn Event Name.
+        /// </summary>
+        public const string PlayerWithdrawn = "PLAYER_WITHDRAWN";
     }
 }

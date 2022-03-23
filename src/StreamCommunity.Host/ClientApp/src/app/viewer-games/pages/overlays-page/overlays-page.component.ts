@@ -29,7 +29,7 @@ export class OverlaysPageComponent implements OnInit {
 
     this.signalrService.connection.on('notify', (param) => {
       console.log('Received event: ', param);
-      if (['PLAYER_ENLISTED', 'PLAYER_DRAWN'].includes(param.type)) {
+      if (['PLAYER_ENLISTED', 'PLAYER_DRAWN', 'PLAYER_WITHDRAWN'].includes(param.type)) {
         this.enlistmentsService.getEnlistments().toPromise();
       }
     });
