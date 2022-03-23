@@ -3,7 +3,7 @@ using MediatR;
 
 namespace StreamCommunity.Application.ViewerGames.Enlistments.Events
 {
-    public class PlayerDrawn : INotification
+    public class PlayerDrawn : EventBase, INotification
     {
         public PlayerDrawn(string userName)
         {
@@ -12,6 +12,6 @@ namespace StreamCommunity.Application.ViewerGames.Enlistments.Events
 
         public string UserName { get; }
 
-        public string Type => EventNames.PlayerDrawn;
+        public override string Type => EventNames.PlayerDrawn;
     }
 }

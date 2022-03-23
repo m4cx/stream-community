@@ -10,15 +10,17 @@ using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Twitch.Configuration;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;
+using TwitchLib.Client.Interfaces;
 using TwitchLib.Client.Models;
 using TwitchLib.Communication.Clients;
+using TwitchLib.Communication.Events;
 using TwitchLib.Communication.Models;
 
 namespace StreamCommunity.Twitch
 {
     public sealed class TwitchConnector : IChatMessaging
     {
-        private readonly TwitchClient twitchClient;
+        private readonly ITwitchClient twitchClient;
         private readonly IOptions<TwitchConnectorConfiguration> connectorConfiguration;
         private readonly IMediator mediator;
         private readonly ILogger<TwitchConnector> logger;
@@ -57,9 +59,21 @@ namespace StreamCommunity.Twitch
 
         private void InitializeEvents()
         {
+            twitchClient.OnError += TwitchClient_OnError;
             twitchClient.OnConnected += TwitchClient_OnConnected;
+            twitchClient.OnConnectionError += TwitchClientOnOnConnectionError;
             twitchClient.OnChatCommandReceived += async (sender, e)
                 => await OnChatCommandReceived(sender, e);
+        }
+
+        private void TwitchClientOnOnConnectionError(object? sender, OnConnectionErrorArgs e)
+        {
+            logger.LogError("Twitch connection error {@Error}", e.Error);
+        }
+
+        private void TwitchClient_OnError(object? sender, OnErrorEventArgs e)
+        {
+            logger.LogError(e.Exception, "Error while communicating with twitch");
         }
 
         private async Task OnChatCommandReceived(object? sender, OnChatCommandReceivedArgs e)
@@ -92,29 +106,23 @@ namespace StreamCommunity.Twitch
         private IRequest? CreateCommand(OnChatCommandReceivedArgs e)
         {
             const string enlistmentKey = "enlist";
-            const string HelpKey = "help";
+            const string withdrawKey = "withdraw";
+            const string helpKey = "help";
 
-            IRequest? command = null;
-            switch (e.Command.CommandText)
+            IRequest? command = e.Command.CommandText switch
             {
-                case enlistmentKey:
-                    command = new EnlistPlayerCommand(e.Command.ChatMessage.Username);
-                    break;
-
-                case HelpKey:
-                    command = new HelpCommand();
-                    break;
-
-                default:
-                    break;
-            }
+                enlistmentKey => new EnlistPlayerCommand(e.Command.ChatMessage.Username),
+                withdrawKey => new WithdrawPlayerCommand(e.Command.ChatMessage.Username),
+                helpKey => new HelpCommand(),
+                _ => null
+            };
 
             return command;
         }
 
         private void TwitchClient_OnConnected(object? sender, OnConnectedArgs e)
         {
-            logger.LogInformation("Connected to {Channel}", e.AutoJoinChannel);
+            logger.LogInformation("Connected with bot user name {BotName}", e.BotUsername);
         }
     }
 }

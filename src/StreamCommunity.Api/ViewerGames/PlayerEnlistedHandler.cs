@@ -3,8 +3,6 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
-using StreamCommunity.Application.ViewerGames;
-using StreamCommunity.Application.ViewerGames.Enlistments;
 using StreamCommunity.Application.ViewerGames.Enlistments.Events;
 
 namespace StreamCommunity.Api.ViewerGames
@@ -21,7 +19,7 @@ namespace StreamCommunity.Api.ViewerGames
 
         public async Task Handle(PlayerEnlisted notification, CancellationToken cancellationToken)
         {
-            await hubContext.Clients.All.SendAsync("notify", notification, cancellationToken: cancellationToken);
+            await hubContext.Clients.All.SendAsync("notify", notification, cancellationToken);
         }
     }
 }

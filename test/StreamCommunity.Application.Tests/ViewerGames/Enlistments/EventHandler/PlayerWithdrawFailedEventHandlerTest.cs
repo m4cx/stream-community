@@ -3,22 +3,22 @@ using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using StreamCommunity.Application.Common;
+using StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
 using StreamCommunity.Application.ViewerGames.Enlistments.Events;
-using StreamCommunity.Application.ViewerGames.Enlistments.Handler;
 
-namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
+namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.EventHandler;
 
-public class PlayerEnlistedEventHandlerTest : MockDbTestBase
+public class PlayerWithdrawFailedEventHandlerTest : MockDbTestBase
 {
     private Mock<IChatMessaging> chatMessagingMock = null!;
-    private PlayerEnlistedEventHandler instance = null!;
+    private PlayerWithdrawFailedEventHandler instance = null!;
 
     [SetUp]
     public void SetUp()
     {
         chatMessagingMock = new Mock<IChatMessaging>();
 
-        instance = new PlayerEnlistedEventHandler(DbContext, chatMessagingMock.Object);
+        instance = new PlayerWithdrawFailedEventHandler(DbContext, chatMessagingMock.Object);
     }
 
     [Test]
@@ -26,7 +26,11 @@ public class PlayerEnlistedEventHandlerTest : MockDbTestBase
     {
         var userName = "testUser";
 
-        await instance.Handle(new PlayerEnlisted(userName), CancellationToken.None);
+        await instance.Handle(
+            new PlayerWithdrawelFailed(
+                userName,
+                PlayerWithdrawelFailedReason.PlayerNotFound),
+            CancellationToken.None);
 
         chatMessagingMock.Verify(
             x => x.SendMessageAsync(It.Is<string>(s => s.Contains(userName))));

@@ -64,5 +64,20 @@ namespace StreamCommunity.Domain
 
             State = EnlistmentState.Closed;
         }
+
+        /// <summary>
+        /// Withdraw from enlistment.
+        /// </summary>
+        /// <exception cref="EnlistmentException">When <see cref="State"/> is not <see cref="EnlistmentState.Open"/>.</exception>
+        public void Withdraw()
+        {
+            if (State != EnlistmentState.Open)
+            {
+                throw new EnlistmentException(
+                    $"Enlistment needs to be in state 'Open' in order to be withdrawn. Current State: {Enum.GetName(State)}");
+            }
+
+            State = EnlistmentState.Withdrawn;
+        }
     }
 }

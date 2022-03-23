@@ -25,7 +25,8 @@ export class EnlistmentsPageComponent implements OnInit {
 
     this.signalrService.connection.on('notify', (param) => {
       console.log('Received event: ', param);
-      if (param.type === 'PLAYER_ENLISTED') {
+      const updatableEvents = ['PLAYER_ENLISTED', 'PLAYER_WITHDRAWN', 'PLAYER_DRAWN']
+      if (updatableEvents.includes(param.type)) {
         this.enlistmentService.getEnlistments().toPromise();
       }
     });
