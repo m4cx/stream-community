@@ -25,7 +25,7 @@ For now you just need to create a "Bot Chat Token". When first entering the page
 
 After selecting "Bot Chat Token" you need to grant access for your currently logged in user in [twitch.tv](https://twitch.tv). The user you grant access here, will be the used user for generated chat messages. This user will interact as a bot with your users in the twitch chat.
 
-> Important 
+> **Important**
 > 
 > Treat the generated token as it was a personal password. Anyone who gets access to this token will be able to act in a twitch chat on behalf of you. If you don't need 
 > this token anymore, you need to revoke it in twitch. Of course this service is also provided by the token generator.
@@ -44,3 +44,10 @@ SETX TwitchCommunity__Connector__AccessToken "<paste-access-token-value-between-
 
 For other options to set environment variables in Windows just have a look at [this help article](https://www.computerhope.com/issues/ch000549.htm).
 
+## Start the software
+
+In order to start the software you need execute `StreamCommunity.Host.exe`.
+
+## Management UI
+
+The management UI will afterwards be available under the URL [http://localhost:5000](http://localhost:5000)
