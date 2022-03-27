@@ -50,4 +50,9 @@ In order to start the software you need execute `StreamCommunity.Host.exe`.
 
 ## Management UI
 
-The management UI will afterwards be available under the URL [http://localhost:5000](http://localhost:5000)
+The management UI will afterwards be available under the URL [http://localhost:5000](http://localhost:5000).
+
+## Overlay UI
+
+The overlay UI will be available under the following URL [http://localhost:5000/#/overlay]
+The overlay UI will be available under the following URL [http://localhost:5000/#/overlay]
