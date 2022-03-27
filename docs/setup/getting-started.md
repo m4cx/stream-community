@@ -30,7 +30,7 @@ After selecting "Bot Chat Token" you need to grant access for your currently log
 > Treat the generated token as it was a personal password. Anyone who gets access to this token will be able to act in a twitch chat on behalf of you. If you don't need 
 > this token anymore, you need to revoke it in twitch. Of course this service is also provided by the token generator.
 
-In order to securely passing this access token to the Stream Community software we use environment variables, as long as you can assume your whole system is save.
+In order to securely passing this access token to the Stream Community software we use environment variables, as long as you can assume your whole system is safe.
 
 | Environment Variable                      |
 | ----------------------------------------- |
