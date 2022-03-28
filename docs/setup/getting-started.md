@@ -54,5 +54,5 @@ The management UI will afterwards be available under the URL [http://localhost:5
 
 ## Overlay UI
 
-The overlay UI will be available under the following URL [http://localhost:5000/#/overlay]
-The overlay UI will be available under the following URL [http://localhost:5000/#/overlay]
+The overlay UI will be available under the following URL [http://localhost:5000/#/overlay](http://localhost:5000/#/overlay).
+
