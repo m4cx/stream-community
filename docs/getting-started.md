@@ -27,7 +27,7 @@ In order to get access to the Twitch-API you need to create an access-token. As 
 We recommend using [Twitch Token Generator by swiftyspiffy](https://twitchtokengenerator.com/).
 
 For now you just need to create a "Bot Chat Token". When first entering the page in the link you are presented a quick action to accomplish this.
-![Create a Bot Chat Token](../img/bot-chat-token.png)
+![Create a Bot Chat Token](./img/bot-chat-token.png)
 
 After selecting "Bot Chat Token" you need to grant access for your currently logged in user in [twitch.tv](https://twitch.tv). The user you grant access here, will be the used user for generated chat messages. This user will interact as a bot with your users in the twitch chat.
 
