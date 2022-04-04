@@ -5,10 +5,10 @@ using JetBrains.Annotations;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
+using StreamCommunity.Application.ViewerGames.Events;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler;
+namespace StreamCommunity.Application.ViewerGames.Handler;
 
 [UsedImplicitly]
 internal sealed class WithdrawPlayerCommandHandler : IRequestHandler<WithdrawPlayerCommand>

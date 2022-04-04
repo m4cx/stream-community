@@ -1,4 +1,4 @@
-﻿namespace StreamCommunity.Application.ViewerGames.Enlistments.Events;
+﻿namespace StreamCommunity.Application.ViewerGames.Events;
 
 public abstract class EventBase
 {

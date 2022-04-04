@@ -7,15 +7,15 @@ using MediatR;
 using StreamCommunity.Application.ChatMessages;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
+using StreamCommunity.Application.ViewerGames.Events;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
+namespace StreamCommunity.Application.ViewerGames.EventHandler;
 
 [UsedImplicitly]
 internal sealed class PlayerWithdrawFailedEventHandler : ChatMessageEventHandlerBase, INotificationHandler<PlayerWithdrawelFailed>
 {
-    private static readonly ChatMessageTemplate DefaultResponseMessage = new(
+    private static readonly ChatMessageTemplate DefaultResponseMessage = new (
         ChatMessageTemplateIdentifiers.PlayerWithdrawFailedEventHandler,
         "Viewer Game konnte nicht für {UserName} zurückgezogen werden. {Reason}");
 

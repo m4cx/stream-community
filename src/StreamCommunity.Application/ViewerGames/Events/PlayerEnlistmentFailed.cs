@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using MediatR;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Events;
+namespace StreamCommunity.Application.ViewerGames.Events;
 
 /// <summary>
 /// This event is published, if a player requesting an enlistment for a viewer game fails.

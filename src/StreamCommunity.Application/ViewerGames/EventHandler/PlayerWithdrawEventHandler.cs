@@ -6,16 +6,16 @@ using MediatR;
 using StreamCommunity.Application.ChatMessages;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
+using StreamCommunity.Application.ViewerGames.Events;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
+namespace StreamCommunity.Application.ViewerGames.EventHandler;
 
 [UsedImplicitly]
 internal sealed class PlayerWithdrawEventHandler : ChatMessageEventHandlerBase, INotificationHandler<PlayerWithdrawn>
 {
     private static readonly ChatMessageTemplate DefaultResponseMessage
-        = new(
+        = new (
             ChatMessageTemplateIdentifiers.PlayerWithdrawnEventHandler,
             "Viewer Game für {UserName} wurde zurückgezogen.");
 

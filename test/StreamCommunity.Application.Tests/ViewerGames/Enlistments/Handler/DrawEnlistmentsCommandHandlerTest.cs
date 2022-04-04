@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Moq;
 using NUnit.Framework;
-using StreamCommunity.Application.ViewerGames.Enlistments;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
-using StreamCommunity.Application.ViewerGames.Enlistments.Handler;
+using StreamCommunity.Application.ViewerGames;
+using StreamCommunity.Application.ViewerGames.Events;
+using StreamCommunity.Application.ViewerGames.Handler;
 using StreamCommunity.Domain;
 
 namespace StreamCommunity.Application.Tests.ViewerGames.Enlistments.Handler;
