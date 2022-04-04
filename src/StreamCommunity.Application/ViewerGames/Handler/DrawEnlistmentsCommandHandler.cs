@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using MediatR;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
+using StreamCommunity.Application.ViewerGames.Events;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Handler
 {
     [UsedImplicitly]
     internal sealed class DrawEnlistmentsCommandHandler : IRequestHandler<DrawEnlistmentsCommand>

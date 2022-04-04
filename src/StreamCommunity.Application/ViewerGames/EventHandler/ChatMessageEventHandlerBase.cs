@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.EventHandler;
+namespace StreamCommunity.Application.ViewerGames.EventHandler;
 
 internal abstract class ChatMessageEventHandlerBase
 {

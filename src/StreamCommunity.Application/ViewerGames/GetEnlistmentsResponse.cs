@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments
+namespace StreamCommunity.Application.ViewerGames
 {
     public class GetEnlistmentsResponse
     {

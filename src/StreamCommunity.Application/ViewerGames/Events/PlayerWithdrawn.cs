@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Events;
+namespace StreamCommunity.Application.ViewerGames.Events;
 
 public sealed class PlayerWithdrawn : EventBase, INotification
 {

@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using StreamCommunity.Application.Persistence;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Handler
 {
     [UsedImplicitly]
     internal sealed class

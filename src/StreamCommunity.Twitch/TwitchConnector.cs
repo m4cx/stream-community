@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Help;
-using StreamCommunity.Application.ViewerGames.Enlistments;
+using StreamCommunity.Application.ViewerGames;
 using StreamCommunity.Twitch.Configuration;
 using TwitchLib.Client;
 using TwitchLib.Client.Events;

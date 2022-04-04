@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments
+namespace StreamCommunity.Application.ViewerGames
 {
     public sealed class GetEnlistmentsRequest : IRequest<GetEnlistmentsResponse>
     {

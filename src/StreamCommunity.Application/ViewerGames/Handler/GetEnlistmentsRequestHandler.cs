@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using StreamCommunity.Application.Persistence;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler;
+namespace StreamCommunity.Application.ViewerGames.Handler;
 
 [UsedImplicitly]
 internal sealed class GetEnlistmentsRequestHandler : IRequestHandler<GetEnlistmentsRequest, GetEnlistmentsResponse>

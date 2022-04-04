@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments;
+namespace StreamCommunity.Application.ViewerGames;
 
 public class WithdrawPlayerCommand : IRequest
 {

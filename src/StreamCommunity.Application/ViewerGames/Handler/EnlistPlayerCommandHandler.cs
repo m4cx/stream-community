@@ -5,10 +5,10 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using StreamCommunity.Application.Common;
 using StreamCommunity.Application.Persistence;
-using StreamCommunity.Application.ViewerGames.Enlistments.Events;
+using StreamCommunity.Application.ViewerGames.Events;
 using StreamCommunity.Domain;
 
-namespace StreamCommunity.Application.ViewerGames.Enlistments.Handler
+namespace StreamCommunity.Application.ViewerGames.Handler
 {
     internal sealed class EnlistPlayerCommandHandler : IRequestHandler<EnlistPlayerCommand>
     {
