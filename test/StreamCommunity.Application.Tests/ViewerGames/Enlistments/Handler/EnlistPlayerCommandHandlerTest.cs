@@ -58,7 +58,7 @@ public class EnlistPlayerCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithExistingEnlistment_PlayerEnlistmentFailedIsSentAsync()
     {
-        DbContext.Enlistments.Add(new Enlistment(UserName, DateTime.Now));
+        DbContext.Enlistments.Add(new Enlistment(UserName, DateTime.Now, 1));
         await DbContext.SaveChangesAsync();
 
         await instance.Handle(new EnlistPlayerCommand(UserName), CancellationToken.None);
@@ -73,7 +73,7 @@ public class EnlistPlayerCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithExistingEnlistment_LogoutputIsLoggedAsync()
     {
-        var enlistment = new Enlistment(UserName, DateTime.Now);
+        var enlistment = new Enlistment(UserName, DateTime.Now, 1);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
 
