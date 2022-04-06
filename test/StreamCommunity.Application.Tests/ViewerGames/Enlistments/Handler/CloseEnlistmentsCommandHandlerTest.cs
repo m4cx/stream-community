@@ -23,7 +23,7 @@ public class CloseEnlistmentsCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_EnlistmentInStateActive_IsClosedAsync()
     {
-        var enlistment = new Enlistment("testUser", DateTime.Now);
+        var enlistment = new Enlistment("testUser", DateTime.Now, 1);
         enlistment.Draw();
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
@@ -36,7 +36,7 @@ public class CloseEnlistmentsCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_EnlistmentNotInStateActive_ThrowsEnlistmentExceptionAsync()
     {
-        var enlistment = new Enlistment("testUser", DateTime.Now);
+        var enlistment = new Enlistment("testUser", DateTime.Now, 1);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
         

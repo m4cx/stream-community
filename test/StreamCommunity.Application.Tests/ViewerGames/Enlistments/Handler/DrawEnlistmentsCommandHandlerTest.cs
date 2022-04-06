@@ -27,7 +27,7 @@ public class DrawEnlistmentsCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_OpenEnlistment_StateIsActiveAsync()
     {
-        var enlistment = new Enlistment("testUser", DateTime.Now);
+        var enlistment = new Enlistment("testUser", DateTime.Now, 1);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
 
@@ -39,7 +39,7 @@ public class DrawEnlistmentsCommandHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_OpenEnlistment_EventIsSendAsync()
     {
-        var enlistment = new Enlistment("testUser", DateTime.Now);
+        var enlistment = new Enlistment("testUser", DateTime.Now, 1);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
 

@@ -41,9 +41,20 @@ namespace StreamCommunity.Application.ViewerGames.Handler
                 return Unit.Value;
             }
 
-            var enlistment = new Enlistment(request.UserName, dateTimeProvider.UtcNow);
+            // get the current max sorting number and apply
+            var openEnlistments = streamCommunityContext.Enlistments
+                .Where(x =>
+                    x.State == EnlistmentState.Open &&
+                    x.SortingNo.HasValue);
+            var currentMax = openEnlistments.Any()
+                ? openEnlistments?
+                    .Max(x => x.SortingNo.Value) ?? 0
+                : 0;
+
+            var enlistment = new Enlistment(request.UserName, dateTimeProvider.UtcNow, currentMax + 1);
             streamCommunityContext.Enlistments.Add(enlistment);
             await streamCommunityContext.SaveChangesAsync(cancellationToken);
+
 
             await mediator.Publish(new PlayerEnlisted(request.UserName), cancellationToken);
 

@@ -30,8 +30,8 @@ public class GetEnlistmentsRequestHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithMultipleEnlistmentsWithOpenState_ReturnsAllOpenAsync()
     {
-        var enlistment1 = new Enlistment("testUser1", DateTime.Now);
-        var enlistment2 = new Enlistment("testUser2", DateTime.Now);
+        var enlistment1 = new Enlistment("testUser1", DateTime.Now, 1);
+        var enlistment2 = new Enlistment("testUser2", DateTime.Now, 1);
         await AddEnlistmentsAsync(new[]
         {
             enlistment1,
@@ -49,7 +49,7 @@ public class GetEnlistmentsRequestHandlerTest : MockDbTestBase
     [Test]
     public async Task Handle_WithClosedRequestAndRequestClosed_ReturnsTheClosedEnlistmentAsync()
     {
-        var enlistment1 = new Enlistment("testUser1", DateTime.Now);
+        var enlistment1 = new Enlistment("testUser1", DateTime.Now, 1);
         enlistment1.Draw();
         enlistment1.Close();
 

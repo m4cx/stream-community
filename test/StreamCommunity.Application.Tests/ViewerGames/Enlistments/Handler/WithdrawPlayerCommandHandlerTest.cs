@@ -45,7 +45,7 @@ public class WithdrawPlayerCommandHandlerTest : MockDbTestBase
     public async Task Handle_WithKnowUserName_SendsSuccessNotification()
     {
         const string userName = "testUser";
-        DbContext.Enlistments.Add(new Enlistment(userName, DateTime.UtcNow));
+        DbContext.Enlistments.Add(new Enlistment(userName, DateTime.UtcNow, 1));
         await DbContext.SaveChangesAsync();
 
         await instance.Handle(new WithdrawPlayerCommand(userName), CancellationToken.None);
@@ -62,7 +62,7 @@ public class WithdrawPlayerCommandHandlerTest : MockDbTestBase
     public async Task Handle_WithKnowUserName_StateIsChangedToWithdrawn()
     {
         const string userName = "testUser";
-        var enlistment = new Enlistment(userName, DateTime.UtcNow);
+        var enlistment = new Enlistment(userName, DateTime.UtcNow, 1);
         DbContext.Enlistments.Add(enlistment);
         await DbContext.SaveChangesAsync();
 
