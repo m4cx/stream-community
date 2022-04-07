@@ -1,5 +1,6 @@
 ﻿using System;
 
+// ReSharper disable UnusedAutoPropertyAccessor.Global
 namespace StreamCommunity.Api.ViewerGames
 {
     public class EnlistmentModel
@@ -15,6 +16,11 @@ namespace StreamCommunity.Api.ViewerGames
         /// Gets or sets the timestamp the enlistment was created.
         /// </summary>
         public DateTime Timestamp { get; set; }
+
+        /// <summary>
+        /// Gets or sets the order num for sorting.
+        /// </summary>
+        public int? SortingNo { get; set; }
 
         /// <summary>
         /// Gets or sets the state of the enlistment.

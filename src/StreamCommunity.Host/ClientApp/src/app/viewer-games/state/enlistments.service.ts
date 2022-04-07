@@ -12,7 +12,7 @@ export class EnlistmentsService {
   constructor(
     protected store: EnlistmentsStore,
     private httpClient: HttpClient
-  ) {}
+  ) { }
 
   getEnlistments(): Observable<Enlistment[]> {
     return this.httpClient.get<Enlistment[]>(this.baseUri).pipe(
@@ -20,7 +20,8 @@ export class EnlistmentsService {
         const mapped = x.map((value, index) => {
           value.timestamp = new Date(value.timestamp);
           return value;
-        });
+        })
+        .sort((a, b) => a.sortingNo - b.sortingNo);
         this.store.set(mapped);
       })
     );
@@ -36,5 +37,17 @@ export class EnlistmentsService {
     return this.httpClient
       .put(`${this.baseUri}/${enlistment.id}/close`, null)
       .pipe(switchMap((x) => this.getEnlistments()));
+  }
+
+  moveUp(enlistment: Enlistment) {
+    return this.httpClient
+      .put(`${this.baseUri}/${enlistment.id}/move-up`, null)
+      .pipe(switchMap(x => this.getEnlistments()));
+  }
+
+  moveDown(enlistment: Enlistment) {
+    return this.httpClient
+      .put(`${this.baseUri}/${enlistment.id}/move-down`, null)
+      .pipe(switchMap(x => this.getEnlistments()));
   }
 }
