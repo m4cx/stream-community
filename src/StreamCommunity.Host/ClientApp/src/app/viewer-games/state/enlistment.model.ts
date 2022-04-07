@@ -5,6 +5,7 @@ export interface Enlistment {
   userName: string;
   state: EnlistmentState;
   timestamp: Date;
+  sortingNo: number;
 }
 
 export function createEnlistment(params: Partial<Enlistment>) {

@@ -29,7 +29,8 @@ namespace StreamCommunity.Api.ViewerGames
                     Id = x.Id,
                     UserName = x.UserName,
                     State = (EnlistmentState)x.State,
-                    Timestamp = x.Timestamp - TimeSpan.Zero
+                    Timestamp = x.Timestamp - TimeSpan.Zero,
+                    SortingNo = x.SortingNo
                 });
             return Ok(enlistmentModels);
         }
@@ -45,6 +46,20 @@ namespace StreamCommunity.Api.ViewerGames
         public async Task<IActionResult> CloseEnlistmentAsync(int enlistmentId)
         {
             await mediator.Send(new CloseEnlistmentsCommand(new[] { enlistmentId }));
+            return Ok();
+        }
+
+        [HttpPut("{enlistmentId}/move-up")]
+        public async Task<IActionResult> MoveUp(int enlistmentId)
+        {
+            await mediator.Send(new ChangeEnlistmentSortOrderCommand(enlistmentId, SortDirection.Up));
+            return Ok();
+        }
+
+        [HttpPut("{enlistmentId}/move-down")]
+        public async Task<IActionResult> MoveDown(int enlistmentId)
+        {
+            await mediator.Send(new ChangeEnlistmentSortOrderCommand(enlistmentId, SortDirection.Down));
             return Ok();
         }
     }
